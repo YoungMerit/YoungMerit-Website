@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>YoungMerit — Privacy Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --cream:#F5F0E8;--dark:#1A1208;--brown:#3D2B0F;--amber:#C4861A;
+    --amber-light:#E8A83A;--stone:#8A7560;--stone-light:#D4C9B8;
+    --white:#FDFAF5;--card:#EDE8DE;--green:#3A6B3A;--green-light:#E8F0E8;
+    --red:#8B2020;--blue:#1A3A5C;--blue-light:#E8F0F8;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}}
+  body{background:var(--cream);color:var(--dark);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;}
+
+  /* NAV */
+  nav.main-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#0E0906;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;padding:0 32px;height:64px;gap:20px;}
+  .hamburger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;z-index:1100;}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--cream);transition:all 0.3s ease;transform-origin:center;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .logo{font-family:'Archivo Black',sans-serif;font-size:26px;letter-spacing:2px;color:var(--cream);text-decoration:none;flex-shrink:0;}
+  .logo span{color:var(--cream);}
+  .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
+  .nav-link{color:rgba(253,250,245,0.5);text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:6px;transition:all 0.2s;}
+  .nav-link:hover{color:var(--cream);background:rgba(255,255,255,0.07);}
+  .btn-nav{background:var(--dark);color:var(--cream);border:none;padding:9px 20px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s;}
+  .btn-nav:hover{background:var(--brown);}
+
+  /* SIDE MENU */
+  .overlay{position:fixed;inset:0;background:rgba(26,18,8,0.4);z-index:1040;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+  .overlay.open{opacity:1;pointer-events:all;}
+  .side-menu{position:fixed;top:0;left:0;width:280px;height:100vh;background:var(--white);border-right:1.5px solid var(--stone-light);z-index:1050;transform:translateX(-100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);padding-top:80px;display:flex;flex-direction:column;}
+  .side-menu.open{transform:translateX(0);}
+  .menu-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--stone);padding:20px 28px 8px;}
+  .menu-item{display:flex;align-items:center;gap:12px;padding:13px 28px;text-decoration:none;color:var(--dark);font-weight:500;font-size:15px;border-left:3px solid transparent;transition:all 0.2s;}
+  .menu-item:hover,.menu-item.active{background:var(--card);border-left-color:var(--amber);color:var(--brown);}
+  .menu-icon{width:18px;height:18px;flex-shrink:0;}
+  .menu-bottom{margin-top:auto;padding:20px 28px;border-top:1px solid var(--stone-light);}
+
+  /* LAYOUT */
+  .page-wrap{display:grid;grid-template-columns:280px 1fr;max-width:1200px;margin:0 auto;padding:104px 48px 80px;gap:60px;align-items:start;}
+
+  /* STICKY TOC */
+  .toc{position:sticky;top:84px;align-self:start;}
+  .toc-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--stone);margin-bottom:16px;padding-bottom:12px;border-bottom:1.5px solid var(--stone-light);}
+  .toc-list{display:flex;flex-direction:column;gap:2px;}
+  .toc-item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;font-size:13px;color:var(--stone);text-decoration:none;transition:all 0.2s;border-left:2px solid transparent;cursor:pointer;}
+  .toc-item:hover{color:var(--brown);background:var(--card);border-left-color:var(--stone-light);}
+  .toc-item.active{color:var(--amber);background:rgba(196,134,26,0.06);border-left-color:var(--amber);font-weight:600;}
+  .toc-num{font-family:'Archivo Black',sans-serif;font-size:16px;color:var(--stone-light);width:20px;flex-shrink:0;}
+  .toc-item.active .toc-num{color:var(--amber);}
+
+  /* LEGAL DISCLAIMER BANNER */
+  .legal-banner{background:var(--blue-light);border:1.5px solid var(--blue);border-radius:14px;padding:18px 20px;margin-bottom:40px;display:flex;gap:14px;align-items:flex-start;}
+  .lb-icon{width:36px;height:36px;border-radius:9px;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+  .lb-text{font-size:13px;color:var(--blue);line-height:1.6;}
+  .lb-text strong{display:block;font-size:14px;margin-bottom:4px;color:var(--blue);}
+
+  /* CONTENT */
+  .content{}
+  .policy-header{margin-bottom:48px;}
+  .policy-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--stone);margin-bottom:12px;display:block;}
+  .policy-title{font-family:'Archivo Black',sans-serif;font-size:72px;line-height:0.92;letter-spacing:1px;color:var(--dark);margin-bottom:20px;}
+  .policy-title .acc{color:var(--amber);}
+  .policy-meta{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--stone);}
+  .policy-meta-item{display:flex;align-items:center;gap:6px;}
+
+  /* SECTIONS */
+  .policy-section{margin-bottom:56px;scroll-margin-top:88px;}
+  .section-header{display:flex;align-items:center;gap:14px;margin-bottom:24px;padding-bottom:16px;border-bottom:1.5px solid var(--stone-light);}
+  .section-num{font-family:'Archivo Black',sans-serif;font-size:32px;color:var(--amber);line-height:1;flex-shrink:0;width:36px;}
+  .section-title{font-family:'Archivo Black',sans-serif;font-size:28px;color:var(--dark);letter-spacing:1px;line-height:1;}
+
+  h3.sub-heading{font-size:16px;font-weight:600;color:var(--dark);margin:24px 0 10px;}
+  p{font-size:15px;color:var(--brown);line-height:1.8;margin-bottom:14px;}
+  p:last-child{margin-bottom:0;}
+
+  /* TABLES */
+  .policy-table{width:100%;border-collapse:collapse;margin:20px 0;border-radius:12px;overflow:hidden;border:1.5px solid var(--stone-light);}
+  .policy-table th{background:var(--dark);color:var(--cream);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:12px 16px;text-align:left;}
+  .policy-table td{padding:12px 16px;font-size:13px;color:var(--brown);border-bottom:1px solid var(--stone-light);vertical-align:top;line-height:1.6;}
+  .policy-table tr:last-child td{border-bottom:none;}
+  .policy-table tr:nth-child(even) td{background:var(--card);}
+
+  /* HIGHLIGHT BOXES */
+  .highlight-box{border-radius:12px;padding:18px 20px;margin:20px 0;}
+  .highlight-box.amber{background:rgba(196,134,26,0.08);border:1px solid rgba(196,134,26,0.25);}
+  .highlight-box.green{background:var(--green-light);border:1px solid rgba(58,107,58,0.3);}
+  .highlight-box.red{background:#F5E8E8;border:1px solid rgba(139,32,32,0.25);}
+  .highlight-box p{font-size:13px;margin-bottom:0;color:var(--brown);}
+  .highlight-box.amber p{color:#6B4A0A;}
+  .highlight-box.green p{color:#2A4A2A;}
+  .highlight-box.red p{color:#6B2020;}
+  .highlight-box strong{display:block;margin-bottom:5px;font-size:13px;}
+
+  /* LISTS */
+  ul.policy-list,ol.policy-list{padding-left:20px;margin:12px 0 16px;}
+  ul.policy-list li,ol.policy-list li{font-size:14px;color:var(--brown);line-height:1.7;margin-bottom:6px;}
+  ul.policy-list li::marker{color:var(--amber);}
+
+  /* RIGHTS GRID */
+  .rights-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:20px 0;}
+  .right-card{background:var(--white);border:1.5px solid var(--stone-light);border-radius:12px;padding:16px 18px;transition:border-color 0.2s;}
+  .right-card:hover{border-color:var(--amber);}
+  .right-card-title{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .right-card-icon{width:22px;height:22px;border-radius:6px;background:var(--card);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .right-card p{font-size:12px;color:var(--stone);margin-bottom:0;line-height:1.6;}
+
+  /* JURISDICTION TABS */
+  .jurisdiction-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;}
+  .jt{padding:7px 16px;border-radius:20px;border:1.5px solid var(--stone-light);background:var(--white);color:var(--stone);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.18s;}
+  .jt:hover{border-color:var(--amber);color:var(--amber);}
+  .jt.active{background:var(--dark);border-color:var(--dark);color:var(--cream);}
+  .jt-content{display:none;}
+  .jt-content.active{display:block;}
+
+  /* CONTACT CARD */
+  .contact-card{background:var(--dark);border-radius:16px;padding:28px;margin-top:20px;}
+  .contact-card h4{font-family:'Archivo Black',sans-serif;font-size:22px;color:var(--amber);letter-spacing:1px;margin-bottom:12px;}
+  .contact-row{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--stone);margin-bottom:10px;}
+  .contact-row:last-child{margin-bottom:0;}
+  .contact-row a{color:var(--amber);text-decoration:none;}
+  .contact-row a:hover{text-decoration:underline;}
+  .contact-icon{width:28px;height:28px;border-radius:7px;background:rgba(196,134,26,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+  /* FOOTER */
+  .policy-footer{background:#0E0906;padding:48px;margin-top:80px;text-align:center;}
+  .pf-logo{font-family:'Archivo Black',sans-serif;font-size:28px;color:var(--cream);letter-spacing:2px;text-decoration:none;display:inline-block;margin-bottom:14px;}
+  .pf-logo span{color:var(--cream);}
+  .pf-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;}
+  .pf-links a{font-size:13px;color:rgba(253,250,245,0.4);text-decoration:none;transition:color 0.2s;}
+  .pf-links a:hover{color:var(--cream);}
+  .pf-copy{font-size:12px;color:rgba(253,250,245,0.2);}
+
+  /* RESPONSIVE */
+  @media(max-width:900px){
+    .page-wrap{grid-template-columns:1fr;padding:88px 20px 60px;gap:32px;}
+    .toc{display:none;}
+    .policy-title{font-size:52px;}
+    .rights-grid{grid-template-columns:1fr;}
+  }
+  @media(max-width:640px){.nav-link{display:none;}}
+
+/* ── AUTH NAV ── */
+.nav-profile-btn{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--dark);font-size:14px;font-weight:600;padding:5px 12px 5px 5px;border-radius:8px;border:1.5px solid var(--stone-light);transition:all 0.2s;background:var(--white);}
+.nav-profile-btn:hover{border-color:var(--amber);background:var(--cream);}
+.nav-avatar{width:30px;height:30px;border-radius:50%;background:var(--amber);color:var(--dark);font-family:'Archivo Black',sans-serif;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-profile-name{max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.nav-logout{color:var(--stone)!important;font-size:13px!important;}
+/* dark nav variant (index hero) */
+nav.main-nav .nav-profile-btn{background:rgba(255,255,255,0.07)!important;border-color:rgba(255,255,255,0.12)!important;color:var(--cream)!important;}
+nav.main-nav .nav-profile-btn:hover{border-color:var(--amber)!important;background:rgba(255,255,255,0.12)!important;}
+nav.main-nav .nav-avatar{background:var(--amber)!important;color:var(--dark)!important;}
+nav.main-nav .nav-profile-name{color:var(--cream)!important;}
+nav.main-nav .nav-logout{color:rgba(253,250,245,0.5)!important;}
+
+.btn-primary{background:var(--dark);color:var(--cream);border:none;padding:9px 20px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s;}
+nav .btn-primary{background:var(--amber)!important;color:var(--dark)!important;}
+.btn-primary:hover{background:var(--brown);transform:translateY(-1px);}
+.footer-col a{display:block;font-size:14px;color:rgba(253,250,245,0.75);text-decoration:none;margin-bottom:10px;transition:color 0.2s;}
+.footer-col a:hover{color:var(--amber);}
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<aside class="side-menu" id="sideMenu">
+  <span class="menu-label">Navigation</span>
+  <a href="index.html" class="menu-item">
+    <span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>Home</a>
+  <a href="find-work.html" class="menu-item">
+    <span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>Find Work</a>
+  <a href="hire-talent.html" class="menu-item">
+    <span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Hire Talent</a>
+  <a href="how-it-works.html" class="menu-item">
+    <span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></span>How It Works</a>
+  <a href="about.html" class="menu-item">
+    <span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>About</a>
+  <a href="pricing.html" class="menu-item"><span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><span data-i18n="nav.pricing">Pricing</span></a>
+  <span class="menu-label" style="margin-top:8px;">My Profile</span>
+  <div class="menu-bottom">
+    <a href="auth.html" class="btn-primary" style="width:100%;text-align:center;display:block;" id="menuCta">Sign Up Free</a>
+  </div>
+</aside>
+
+<nav class="main-nav">
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <a href="index.html" class="logo">Young<span>Merit</span></a>
+  <div class="nav-end"><div class="nav-lang-mount"></div><div class="nav-right"><a href="auth.html" class="nav-link">Log In</a><a href="auth.html" class="btn-primary">Sign Up</a></div>
+</div></nav>
+
+<div class="page-wrap">
+
+  <!-- TABLE OF CONTENTS -->
+  <aside class="toc">
+    <div class="toc-label">Contents</div>
+    <nav class="toc-list" id="tocList">
+      <a class="toc-item active" onclick="scrollTo('s1')"><span class="toc-num">1</span>Who We Are</a>
+      <a class="toc-item" onclick="scrollTo('s2')"><span class="toc-num">2</span>Data We Collect</a>
+      <a class="toc-item" onclick="scrollTo('s3')"><span class="toc-num">3</span>Why We Collect It</a>
+      <a class="toc-item" onclick="scrollTo('s4')"><span class="toc-num">4</span>Legal Basis</a>
+      <a class="toc-item" onclick="scrollTo('s5')"><span class="toc-num">5</span>How We Use It</a>
+      <a class="toc-item" onclick="scrollTo('s6')"><span class="toc-num">6</span>Sharing Your Data</a>
+      <a class="toc-item" onclick="scrollTo('s7')"><span class="toc-num">7</span>Cookies</a>
+      <a class="toc-item" onclick="scrollTo('s8')"><span class="toc-num">8</span>Data Retention</a>
+      <a class="toc-item" onclick="scrollTo('s9')"><span class="toc-num">9</span>International Transfers</a>
+      <a class="toc-item" onclick="scrollTo('s10')"><span class="toc-num">10</span>Your Rights</a>
+      <a class="toc-item" onclick="scrollTo('s11')"><span class="toc-num">11</span>Security</a>
+      <a class="toc-item" onclick="scrollTo('s12')"><span class="toc-num">12</span>Children</a>
+      <a class="toc-item" onclick="scrollTo('s13')"><span class="toc-num">13</span>Jurisdiction Rules</a>
+      <a class="toc-item" onclick="scrollTo('s14')"><span class="toc-num">14</span>Changes</a>
+      <a class="toc-item" onclick="scrollTo('s15')"><span class="toc-num">15</span>Contact Us</a>
+    </nav>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- LEGAL DISCLAIMER -->
+    <div class="legal-banner">
+      <div class="lb-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div class="lb-text">
+        <strong>Legal Notice</strong>
+        This Privacy Policy is a working legal document prepared for professional review. It is not a substitute for advice from a qualified privacy lawyer. We recommend obtaining independent legal advice before publishing this document as a binding instrument. The operator of this platform accepts responsibility for ensuring compliance with all applicable data protection laws in each jurisdiction where the platform operates.
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <div class="policy-header">
+      <span class="policy-eyebrow">Legal Documentation</span>
+      <h1 class="policy-title">PRIVACY<br/><span class="acc">POLICY.</span></h1>
+      <div class="policy-meta">
+        <div class="policy-meta-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Last updated: June 2026
+        </div>
+        <div class="policy-meta-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Effective: June 2026
+        </div>
+        <div class="policy-meta-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Applies in: ZA &middot; CN &middot; US &middot; FR &middot; ES &middot; GB
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box amber" data-i18n="legal.englishOnlyNotice" data-i18n-html>This document is provided in English only. If you have questions, please <a href="contact.html" style="color:inherit;text-decoration:underline;">contact our support team</a> in your preferred language.</div>
+
+    <!-- S1: WHO WE ARE -->
+    <section class="policy-section" id="s1">
+      <div class="section-header">
+        <span class="section-num">1</span>
+        <h2 class="section-title">WHO WE ARE</h2>
+      </div>
+      <p>YoungMerit (referred to as &ldquo;YoungMerit&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo; or &ldquo;our&rdquo;) operates the online platform accessible at <strong>youngmerit.com</strong> and any associated mobile applications or sub-domains. We connect young workers with businesses to complete short-form paid tasks, enabling workers to build verified work histories and businesses to access affordable, accountable entry-level talent.</p>
+      <p>For the purposes of data protection law, we are the <strong>data controller</strong> of personal information collected through the platform. We determine the purposes for which and the means by which personal data is processed.</p>
+      <div class="highlight-box amber">
+        <p><strong>Registered Entity</strong>The legal entity operating YoungMerit is incorporated in [Jurisdiction to be confirmed by legal counsel]. All data processing activities are conducted under the authority of that entity. Our Data Protection Officer can be contacted at the details provided in Section 15.</p>
+      </div>
+    </section>
+
+    <!-- S2: DATA WE COLLECT -->
+    <section class="policy-section" id="s2">
+      <div class="section-header">
+        <span class="section-num">2</span>
+        <h2 class="section-title">DATA WE COLLECT</h2>
+      </div>
+      <p>We collect personal information in several ways: information you provide to us directly, information generated by your use of the platform, and in limited circumstances, information received from third parties.</p>
+
+      <h3 class="sub-heading">2.1 Information You Provide Directly</h3>
+      <table class="policy-table">
+        <thead><tr><th>Category</th><th>Examples</th><th>Required?</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Account Identity</strong></td><td>Full name, email address, password (stored as a salted hash, never in plain text), date of birth, country of residence</td><td>Yes — mandatory to create an account</td></tr>
+          <tr><td><strong>Profile Information</strong></td><td>Profile photo, biography, skills, languages spoken, professional background, portfolio samples, links to external work</td><td>Optional — improves visibility and hiring likelihood</td></tr>
+          <tr><td><strong>Identity Verification</strong></td><td>Government-issued ID document type and reference number, verification selfie (processed by a certified third-party identity verification provider and not stored by us after verification)</td><td>Required to transact on the platform</td></tr>
+          <tr><td><strong>Payment Information</strong></td><td>Bank account details or mobile money identifiers for workers receiving payment; business billing details for posting tasks. Card data is never stored by us directly — all card processing is handled by PCI DSS-certified payment processors.</td><td>Required to send or receive payments</td></tr>
+          <tr><td><strong>Communications</strong></td><td>Messages sent within the platform between workers and businesses, support requests, dispute submissions, feedback and survey responses</td><td>Generated through use</td></tr>
+          <tr><td><strong>Business Information</strong></td><td>Company name, registration number, VAT or tax number, company address, industry category, the name and contact details of the individual acting on the company's behalf</td><td>Required for business accounts</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-heading">2.2 Information Generated Automatically</h3>
+      <table class="policy-table">
+        <thead><tr><th>Category</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Device and Technical Data</strong></td><td>IP address, browser type and version, operating system, device identifiers, screen resolution, time zone setting</td></tr>
+          <tr><td><strong>Usage Data</strong></td><td>Pages viewed, features used, search queries, task applications submitted, time spent on pages, click paths, session duration</td></tr>
+          <tr><td><strong>Transaction Data</strong></td><td>Tasks applied for, tasks posted, tasks completed, amounts paid and received, escrow release events, dispute history, review scores given and received</td></tr>
+          <tr><td><strong>Security and Fraud Data</strong></td><td>Login timestamps, failed login attempts, device fingerprints used for fraud detection, behavioural signals used to distinguish human users from automated bots</td></tr>
+          <tr><td><strong>Location Data</strong></td><td>Country-level location inferred from IP address. We do not collect precise GPS location.</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-heading">2.3 Information From Third Parties</h3>
+      <p>If you register or log in using a third-party authentication provider such as Google or LinkedIn, we receive basic profile information from that provider including your name, email address and profile photo, subject to the privacy settings you have configured with that provider. We do not receive or store your password for those services.</p>
+      <p>We may also receive limited fraud-prevention signals from payment processors and identity verification providers.</p>
+    </section>
+
+    <!-- S3: WHY WE COLLECT IT -->
+    <section class="policy-section" id="s3">
+      <div class="section-header">
+        <span class="section-num">3</span>
+        <h2 class="section-title">WHY WE COLLECT IT</h2>
+      </div>
+      <p>We collect personal information only for specific, explicit and legitimate purposes. We do not process data beyond what is necessary for those purposes.</p>
+      <ul class="policy-list">
+        <li><strong>To create and manage your account</strong> — verifying your identity, enabling login, maintaining your profile and managing your preferences.</li>
+        <li><strong>To operate the platform</strong> — matching workers to tasks, processing task applications, managing escrow payments and releasing funds on approval.</li>
+        <li><strong>To build verified reputation records</strong> — recording completed tasks, storing review scores and trust metrics, generating your Skill Passport and level progression.</li>
+        <li><strong>To process payments securely</strong> — facilitating payment from businesses into escrow, holding funds securely and releasing them to workers upon task approval.</li>
+        <li><strong>To prevent fraud and ensure security</strong> — detecting bot activity, monitoring for account takeover attempts, verifying that users are who they claim to be and investigating disputes.</li>
+        <li><strong>To provide customer support</strong> — resolving disputes, responding to queries and managing platform mediation processes.</li>
+        <li><strong>To comply with legal obligations</strong> — meeting our obligations under anti-money laundering laws, tax reporting requirements and court orders.</li>
+        <li><strong>To improve the platform</strong> — analysing usage patterns in aggregate to identify bugs, improve features and develop new functionality.</li>
+        <li><strong>To communicate with you</strong> — sending transactional notifications (task updates, payment confirmations), safety alerts and, where you have consented, product updates and career advice.</li>
+      </ul>
+    </section>
+
+    <!-- S4: LEGAL BASIS -->
+    <section class="policy-section" id="s4">
+      <div class="section-header">
+        <span class="section-num">4</span>
+        <h2 class="section-title">LEGAL BASIS FOR PROCESSING</h2>
+      </div>
+      <p>Where the General Data Protection Regulation (GDPR), the Protection of Personal Information Act (POPIA), or other applicable law requires us to identify a legal basis for processing your personal information, we rely on the following:</p>
+      <table class="policy-table">
+        <thead><tr><th>Processing Purpose</th><th>Legal Basis</th></tr></thead>
+        <tbody>
+          <tr><td>Creating and managing your account</td><td><strong>Contract</strong> — processing is necessary to perform our agreement with you (the Terms of Service)</td></tr>
+          <tr><td>Operating the task and payment platform</td><td><strong>Contract</strong> — necessary to perform our agreement with you</td></tr>
+          <tr><td>Identity verification</td><td><strong>Legal obligation</strong> — required to comply with applicable Know Your Customer and anti-money-laundering regulations; and <strong>Legitimate interests</strong> — protecting all platform users from fraud</td></tr>
+          <tr><td>Fraud detection and platform security</td><td><strong>Legitimate interests</strong> — we have a legitimate interest in protecting our users and the integrity of the platform from fraud, abuse and security threats</td></tr>
+          <tr><td>Legal compliance and tax reporting</td><td><strong>Legal obligation</strong> — required by law in each jurisdiction where we operate</td></tr>
+          <tr><td>Platform analytics and improvement</td><td><strong>Legitimate interests</strong> — improving the quality and safety of our service</td></tr>
+          <tr><td>Marketing communications and product updates</td><td><strong>Consent</strong> — only where you have opted in. You can withdraw consent at any time.</td></tr>
+          <tr><td>Dispute resolution and mediation</td><td><strong>Contract</strong> and <strong>Legitimate interests</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="highlight-box green">
+        <p><strong>Legitimate Interests Assessment</strong>Where we rely on legitimate interests, we have conducted a balancing test and concluded that our interests do not override your fundamental rights and freedoms, taking into account the reasonable expectations of users of this type of platform. You may request a copy of our legitimate interests assessment by contacting our Data Protection Officer.</p>
+      </div>
+    </section>
+
+    <!-- S5: HOW WE USE IT -->
+    <section class="policy-section" id="s5">
+      <div class="section-header">
+        <span class="section-num">5</span>
+        <h2 class="section-title">HOW WE USE YOUR DATA</h2>
+      </div>
+      <p>Beyond the core purposes listed above, we want to be specific about how your data appears and is used on the platform.</p>
+
+      <h3 class="sub-heading">5.1 Your Public Profile</h3>
+      <p>When you create a worker profile, the following information is visible to businesses and other logged-in users of the platform: your first name and last initial, your location at country level, your skills, your trust score, your completed task count, your level badge and any reviews you have received. Your full name, email address, payment details, identity documents and precise device information are never visible to other users.</p>
+
+      <h3 class="sub-heading">5.2 Your Skill Passport</h3>
+      <p>Your Skill Passport is a shareable summary of your verified work history. When you share your Skill Passport using a generated link, the recipient can view your task completion record, trust score and skill certifications. You control whether your Skill Passport link is active and can deactivate it at any time from your account settings.</p>
+
+      <h3 class="sub-heading">5.3 Reviews and Ratings</h3>
+      <p>Reviews submitted by businesses about your work, and reviews you submit about businesses, are permanently recorded as part of the platform's trust infrastructure. Reviews may not be removed except where they are found to be fraudulent, abusive or submitted in bad faith following a dispute investigation. Verified review data forms the core of our reputation system.</p>
+
+      <h3 class="sub-heading">5.4 Automated Decision-Making</h3>
+      <p>Our fraud detection system uses automated processing to assess the risk of individual transactions and accounts. Where an account is flagged as high-risk, an automated decision may temporarily restrict access pending human review. You have the right to request human review of any automated decision that significantly affects you. You may exercise this right by contacting us at the details in Section 15.</p>
+      <p>Trust score calculation, level progression and task matching are also partially automated but do not produce decisions that have significant legal effects on you beyond your experience of the platform.</p>
+    </section>
+
+    <!-- S6: SHARING -->
+    <section class="policy-section" id="s6">
+      <div class="section-header">
+        <span class="section-num">6</span>
+        <h2 class="section-title">SHARING YOUR DATA</h2>
+      </div>
+      <p>We do not sell your personal data. We do not share your personal data with third parties for their own marketing purposes. We share data only in the following circumstances:</p>
+
+      <h3 class="sub-heading">6.1 With Other Platform Users</h3>
+      <p>As described in Section 5.1, limited profile information is visible to other logged-in users. When you are matched to a task or accept a task, the business posting that task will be able to see your profile information and communicate with you through the platform messaging system. Similarly, workers can see business name and rating information for businesses posting tasks.</p>
+
+      <h3 class="sub-heading">6.2 With Service Providers</h3>
+      <p>We engage trusted third-party service providers who process personal data on our behalf under binding data processing agreements. These include:</p>
+      <table class="policy-table">
+        <thead><tr><th>Provider Category</th><th>Purpose</th><th>Data Shared</th></tr></thead>
+        <tbody>
+          <tr><td>Payment Processors</td><td>Processing escrow payments, disbursements and refunds</td><td>Name, bank details, payment amounts</td></tr>
+          <tr><td>Identity Verification Provider</td><td>Verifying government-issued ID documents and selfies</td><td>Document images, selfie image (not retained by us post-verification)</td></tr>
+          <tr><td>Cloud Infrastructure Provider</td><td>Hosting platform servers and databases</td><td>All platform data — stored in encrypted form</td></tr>
+          <tr><td>Email Delivery Provider</td><td>Sending transactional and marketing emails</td><td>Email address, name, email content</td></tr>
+          <tr><td>Fraud Detection Provider</td><td>Assessing risk of fraudulent activity</td><td>Device identifiers, IP address, behavioural signals</td></tr>
+          <tr><td>Analytics Provider</td><td>Understanding platform usage in aggregate</td><td>Anonymised or pseudonymised usage data</td></tr>
+          <tr><td>Customer Support Tools</td><td>Managing support tickets and dispute communications</td><td>Name, email, support message content</td></tr>
+        </tbody>
+      </table>
+      <p>All service providers are required to maintain the confidentiality and security of personal data and are prohibited from using it for any purpose other than providing the specified service.</p>
+
+      <h3 class="sub-heading">6.3 Legal Disclosure</h3>
+      <p>We may disclose personal data to competent authorities, regulators or courts where required to do so by applicable law, a valid court order, or where necessary to protect the rights, property or safety of the platform, its users or the public. Where legally permitted, we will notify you before disclosing your data.</p>
+
+      <h3 class="sub-heading">6.4 Business Transfers</h3>
+      <p>If we are involved in a merger, acquisition, sale of assets or other business restructuring, personal data we hold may be transferred to the successor entity. You will be notified in advance of any such transfer and of any changes to this Privacy Policy that may result.</p>
+
+      <div class="highlight-box red">
+        <p><strong>We Never Sell Your Data</strong>We have never sold, rented or traded personal data to any third party for commercial purposes, and we will not do so in the future. Our business model is based on platform service fees, not data monetisation.</p>
+      </div>
+    </section>
+
+    <!-- S7: COOKIES -->
+    <section class="policy-section" id="s7">
+      <div class="section-header">
+        <span class="section-num">7</span>
+        <h2 class="section-title">COOKIES AND TRACKING</h2>
+      </div>
+      <p>We use cookies and similar tracking technologies to operate the platform, remember your preferences and understand how you use the service. A cookie is a small file stored on your device by your browser.</p>
+      <table class="policy-table">
+        <thead><tr><th>Cookie Type</th><th>Purpose</th><th>Duration</th><th>Consent Required?</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Strictly Necessary</strong></td><td>Maintaining your login session, enabling secure payment flows, preventing cross-site request forgery</td><td>Session or up to 30 days</td><td>No — these are essential to the service</td></tr>
+          <tr><td><strong>Functional</strong></td><td>Remembering your language preference, display settings and last viewed tasks</td><td>Up to 12 months</td><td>Yes</td></tr>
+          <tr><td><strong>Analytics</strong></td><td>Understanding which pages are visited and how users navigate the platform, to improve the service. Data is aggregated and pseudonymised.</td><td>Up to 13 months</td><td>Yes</td></tr>
+          <tr><td><strong>Security</strong></td><td>Fraud detection and bot identification signals</td><td>Session or up to 30 days</td><td>No — treated as strictly necessary for platform integrity</td></tr>
+        </tbody>
+      </table>
+      <p>We do not use advertising or tracking cookies. We do not use cookies to build profiles of your behaviour for advertising purposes on other websites.</p>
+      <p>You can manage your cookie preferences at any time through the cookie settings panel available in the footer of the platform. You can also configure your browser to block or delete cookies, though this may affect platform functionality. For more information about managing cookies, visit <strong>allaboutcookies.org</strong>.</p>
+    </section>
+
+    <!-- S8: RETENTION -->
+    <section class="policy-section" id="s8">
+      <div class="section-header">
+        <span class="section-num">8</span>
+        <h2 class="section-title">DATA RETENTION</h2>
+      </div>
+      <p>We retain personal data for as long as is necessary for the purposes for which it was collected, or as required by applicable law. We apply the following retention periods:</p>
+      <table class="policy-table">
+        <thead><tr><th>Data Category</th><th>Retention Period</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr><td>Account and profile data</td><td>Duration of account, plus 3 years after closure</td><td>Contractual obligations, dispute resolution, legal claims</td></tr>
+          <tr><td>Transaction and payment records</td><td>7 years from the date of transaction</td><td>Tax and accounting legal obligations in all six jurisdictions</td></tr>
+          <tr><td>Identity verification records</td><td>Duration of account, plus 5 years after closure</td><td>Anti-money laundering legal obligations</td></tr>
+          <tr><td>Platform communications (messages)</td><td>3 years from the date of the message</td><td>Dispute resolution, fraud prevention</td></tr>
+          <tr><td>Reviews and trust score data</td><td>Indefinitely, as part of the verified work history record</td><td>Core platform functionality — the integrity of reputation data must be maintained</td></tr>
+          <tr><td>Security and fraud logs</td><td>12 months</td><td>Security incident investigation</td></tr>
+          <tr><td>Support and dispute records</td><td>3 years from resolution</td><td>Legal claims and dispute reference</td></tr>
+          <tr><td>Marketing consent records</td><td>Until consent is withdrawn, plus 3 years</td><td>Demonstrating lawful basis for marketing communications</td></tr>
+          <tr><td>Cookie and analytics data</td><td>13 months (pseudonymised)</td><td>Industry standard for analytics data</td></tr>
+        </tbody>
+      </table>
+      <p>When data reaches the end of its retention period, it is securely deleted or irreversibly anonymised. If you request deletion of your account, we will delete or anonymise your personal data within 30 days except where retention is required by law or for legitimate dispute resolution purposes.</p>
+    </section>
+
+    <!-- S9: INTERNATIONAL TRANSFERS -->
+    <section class="policy-section" id="s9">
+      <div class="section-header">
+        <span class="section-num">9</span>
+        <h2 class="section-title">INTERNATIONAL DATA TRANSFERS</h2>
+      </div>
+      <p>We operate across six countries. As a result, personal data collected in one country may be processed in a different country where our servers, service providers or team members are located. Wherever data crosses international borders, we ensure that appropriate safeguards are in place.</p>
+      <p>For transfers from the European Economic Area (including France and Spain) to countries not deemed adequate by the European Commission, we rely on <strong>Standard Contractual Clauses</strong> (SCCs) approved by the European Commission, supplemented by technical and organisational measures as appropriate.</p>
+      <p>For transfers involving data collected in the United Kingdom, we rely on the UK <strong>International Data Transfer Agreement</strong> (IDTA) or UK Addendum to the EU SCCs.</p>
+      <p>For transfers involving data collected in South Africa under POPIA, we ensure that the recipient is subject to a binding agreement that upholds standards of protection substantially similar to those required by POPIA.</p>
+      <p>For transfers involving personal data of Chinese citizens, we comply with the requirements of China's Personal Information Protection Law (PIPL), including completion of any required security assessments and the implementation of standard contracts as promulgated by the Cyberspace Administration of China.</p>
+      <div class="highlight-box amber">
+        <p><strong>Requesting Transfer Safeguards</strong>You have the right to obtain a copy of the safeguards we have put in place for international transfers of your personal data. Please contact our Data Protection Officer using the details in Section 15.</p>
+      </div>
+    </section>
+
+    <!-- S10: YOUR RIGHTS -->
+    <section class="policy-section" id="s10">
+      <div class="section-header">
+        <span class="section-num">10</span>
+        <h2 class="section-title">YOUR RIGHTS</h2>
+      </div>
+      <p>Depending on where you are located, you have a number of rights regarding your personal data. We are committed to facilitating the exercise of these rights promptly and without excessive charge. We will respond to all rights requests within <strong>30 days</strong> of receipt, extendable by a further two months for complex or multiple requests with prior notice.</p>
+
+      <div class="rights-grid">
+        <div class="right-card">
+          <div class="right-card-title">
+            <div class="right-card-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            Right of Access
+          </div>
+          <p>You can request a copy of the personal data we hold about you, along with information about how we use it.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-card-title">
+            <div class="right-card-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </div>
+            Right to Rectification
+          </div>
+          <p>You can ask us to correct inaccurate personal data or to complete incomplete data about you.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-card-title">
+            <div class="right-card-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+            </div>
+            Right to Erasure
+          </div>
+          <p>In certain circumstances you can ask us to delete your personal data. This right is limited where retention is required by law or for legitimate dispute resolution purposes.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-card-title">
+            <div class="right-card-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+            </div>
+            Right to Restrict Processing
+          </div>
+          <p>You can ask us to pause processing of your personal data in certain circumstances, for example while we investigate an accuracy complaint.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-card-title">
+            <div class="right-card-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            Right to Data Portability
+          </div>
+          <p>You can request a machine-readable copy of your personal data to transfer to another service provider, where processing is based on consent or contract.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-card-title">
+            <div class="right-card-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            Right to Object
+          </div>
+          <p>You can object to processing based on legitimate interests or for direct marketing purposes. You have an absolute right to object to direct marketing at any time.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-card-title">
+            <div class="right-card-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            Right to Human Review
+          </div>
+          <p>You have the right not to be subject to a decision based solely on automated processing that produces significant legal or similarly significant effects on you.</p>
+        </div>
+        <div class="right-card">
+          <div class="right-card-title">
+            <div class="right-card-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            Right to Withdraw Consent
+          </div>
+          <p>Where processing is based on your consent, you may withdraw that consent at any time without affecting the lawfulness of processing before withdrawal.</p>
+        </div>
+      </div>
+
+      <p>To exercise any of these rights, please contact our Data Protection Officer using the details in Section 15. We may need to verify your identity before processing your request. We will not charge a fee for reasonable requests.</p>
+      <p>You also have the right to lodge a complaint with your relevant data protection supervisory authority. Details for each jurisdiction are provided in Section 13.</p>
+    </section>
+
+    <!-- S11: SECURITY -->
+    <section class="policy-section" id="s11">
+      <div class="section-header">
+        <span class="section-num">11</span>
+        <h2 class="section-title">SECURITY MEASURES</h2>
+      </div>
+      <p>We take the security of your personal data seriously and implement technical and organisational measures designed to protect it against unauthorised access, loss, destruction or alteration.</p>
+      <ul class="policy-list">
+        <li><strong>Encryption in transit:</strong> All data transmitted between your device and our servers is encrypted using TLS 1.2 or higher (HTTPS). We enforce HTTPS across all platform endpoints.</li>
+        <li><strong>Encryption at rest:</strong> Personal data stored in our databases is encrypted at rest using AES-256 encryption.</li>
+        <li><strong>Password security:</strong> Passwords are never stored in plain text. We use bcrypt with a high work factor to hash all passwords before storage.</li>
+        <li><strong>Multi-factor authentication:</strong> All accounts are required to enrol in multi-factor authentication. MFA codes are time-limited and single-use.</li>
+        <li><strong>Access controls:</strong> Internal access to production systems and personal data is restricted on a need-to-know basis, with audit logging of all access events.</li>
+        <li><strong>Rate limiting and bot detection:</strong> All authentication endpoints are rate-limited to prevent credential stuffing attacks. We use behavioural analysis to distinguish human from automated traffic.</li>
+        <li><strong>Penetration testing:</strong> We conduct regular third-party security assessments and penetration tests of our platform infrastructure.</li>
+        <li><strong>Data breach response:</strong> We maintain an incident response plan. In the event of a personal data breach that is likely to result in a risk to your rights and freedoms, we will notify the relevant supervisory authority within 72 hours and will inform affected users without undue delay where required.</li>
+      </ul>
+      <div class="highlight-box amber">
+        <p><strong>No system is perfectly secure.</strong>While we implement industry-standard security measures, no internet-based service can guarantee absolute security against all threats. We encourage you to use a strong, unique password, to enable MFA on your account and to contact us immediately if you suspect unauthorised activity on your account.</p>
+      </div>
+    </section>
+
+    <!-- S12: CHILDREN -->
+    <section class="policy-section" id="s12">
+      <div class="section-header">
+        <span class="section-num">12</span>
+        <h2 class="section-title">CHILDREN AND MINORS</h2>
+      </div>
+      <p>This platform is not directed at or intended for use by persons under the age of 18 years. We do not knowingly collect personal data from children or minors as defined under applicable law in each jurisdiction where we operate.</p>
+      <p>Specifically:</p>
+      <ul class="policy-list">
+        <li>Users must confirm during registration that they are 18 years of age or older.</li>
+        <li>Identity verification is conducted for all users who transact on the platform, which serves as an additional check against minor participation.</li>
+        <li>If we become aware that we have collected personal data from a person under 18 years of age, we will take immediate steps to delete that data and close the associated account.</li>
+      </ul>
+      <p>If you believe that a minor has created an account on our platform, please contact us immediately at the details provided in Section 15. We will investigate and take appropriate action within five business days of receiving such a report.</p>
+      <p>In jurisdictions where a higher minimum age applies for consent to data processing (for example, where the age of digital consent is 16 under GDPR), we apply that higher threshold.</p>
+    </section>
+
+    <!-- S13: JURISDICTION-SPECIFIC RULES -->
+    <section class="policy-section" id="s13">
+      <div class="section-header">
+        <span class="section-num">13</span>
+        <h2 class="section-title">JURISDICTION-SPECIFIC PROVISIONS</h2>
+      </div>
+      <p>In addition to the general provisions of this policy, the following jurisdiction-specific rights, obligations and supervisory authority contact details apply to users in the relevant countries.</p>
+
+      <div class="jurisdiction-tabs">
+        <button class="jt active" onclick="showJurisdiction('za',this)">&#127487;&#127462; South Africa</button>
+        <button class="jt" onclick="showJurisdiction('eu',this)">&#127466;&#127482; France &amp; Spain</button>
+        <button class="jt" onclick="showJurisdiction('uk',this)">&#127468;&#127463; United Kingdom</button>
+        <button class="jt" onclick="showJurisdiction('us',this)">&#127482;&#127480; United States</button>
+        <button class="jt" onclick="showJurisdiction('cn',this)">&#127464;&#127475; China</button>
+      </div>
+
+      <div class="jt-content active" id="jc-za">
+        <h3 class="sub-heading">South Africa — Protection of Personal Information Act 4 of 2013 (POPIA)</h3>
+        <p>South African users are protected by POPIA, which became fully effective on 1 July 2021. Under POPIA, we are the <strong>responsible party</strong> and we process personal information in accordance with the eight conditions for lawful processing set out in POPIA.</p>
+        <p>You have the right to request access to your personal information under the Promotion of Access to Information Act (PAIA). Our PAIA Manual is available on request.</p>
+        <p><strong>Supervisory Authority:</strong> Information Regulator (South Africa)<br/>Website: inforegulator.org.za<br/>Email: inforeg@justice.gov.za<br/>Address: JD House, 27 Stiemens Street, Braamfontein, Johannesburg 2001</p>
+      </div>
+
+      <div class="jt-content" id="jc-eu">
+        <h3 class="sub-heading">France and Spain — General Data Protection Regulation (GDPR)</h3>
+        <p>Users in France and Spain benefit from the full protections of the GDPR and applicable national implementing legislation. In addition to the rights described in Section 10, GDPR users may lodge complaints with their national supervisory authority:</p>
+        <p><strong>France — Commission Nationale de l&rsquo;Informatique et des Libert&eacute;s (CNIL)</strong><br/>Website: cnil.fr<br/>Address: 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07, France</p>
+        <p><strong>Spain — Agencia Espa&ntilde;ola de Protecci&oacute;n de Datos (AEPD)</strong><br/>Website: aepd.es<br/>Address: C/ Jorge Juan, 6, 28001 Madrid, Spain</p>
+        <p>Where we rely on consent as a legal basis for processing, you may withdraw consent at any time without affecting the lawfulness of prior processing. Where we rely on legitimate interests, you may object to that processing at any time.</p>
+      </div>
+
+      <div class="jt-content" id="jc-uk">
+        <h3 class="sub-heading">United Kingdom — UK GDPR and Data Protection Act 2018</h3>
+        <p>UK users are protected by the UK GDPR and the Data Protection Act 2018. Your rights under UK GDPR are equivalent to those described in Section 10. You may lodge a complaint with:</p>
+        <p><strong>Information Commissioner&rsquo;s Office (ICO)</strong><br/>Website: ico.org.uk<br/>Helpline: 0303 123 1113<br/>Address: Wycliffe House, Water Lane, Wilmslow, Cheshire SK9 5AF</p>
+        <p>We have appointed a UK GDPR representative for the purposes of Article 27 UK GDPR. Details are available on request from our Data Protection Officer.</p>
+      </div>
+
+      <div class="jt-content" id="jc-us">
+        <h3 class="sub-heading">United States — CCPA, CPRA and State Privacy Laws</h3>
+        <p>California residents have additional rights under the California Consumer Privacy Act (CCPA) as amended by the California Privacy Rights Act (CPRA):</p>
+        <ul class="policy-list">
+          <li><strong>Right to Know:</strong> You may request disclosure of the categories and specific pieces of personal information we have collected about you in the preceding 12 months.</li>
+          <li><strong>Right to Delete:</strong> You may request deletion of personal information we hold about you, subject to certain exceptions.</li>
+          <li><strong>Right to Correct:</strong> You may request correction of inaccurate personal information we hold about you.</li>
+          <li><strong>Right to Opt-Out of Sale or Sharing:</strong> We do not sell or share personal information as defined under CCPA. No opt-out is therefore required, but you may submit a request confirming this at any time.</li>
+          <li><strong>Right to Limit Use of Sensitive Personal Information:</strong> We do not use sensitive personal information beyond what is necessary to provide the platform service.</li>
+          <li><strong>Non-Discrimination:</strong> We will not discriminate against you for exercising any CCPA rights.</li>
+        </ul>
+        <p>California residents may submit rights requests by contacting us at the details in Section 15 or by emailing <strong>privacy@youngmerit.com</strong>. We will respond within 45 days.</p>
+        <p>Users in Virginia, Colorado, Connecticut, Texas and other US states with state privacy laws may also exercise comparable rights under those laws. Please contact us to discuss your specific rights.</p>
+      </div>
+
+      <div class="jt-content" id="jc-cn">
+        <h3 class="sub-heading">China — Personal Information Protection Law (PIPL)</h3>
+        <p>We comply with China's Personal Information Protection Law (PIPL), effective 1 November 2021, and related regulations including the Data Security Law and Cybersecurity Law.</p>
+        <p>Chinese users have the right to know, access, correct, delete, transfer and restrict the processing of their personal information. Requests may be submitted in Mandarin or English to our Data Protection Officer.</p>
+        <p>For cross-border transfers of personal information originating in China, we comply with applicable transfer requirements including standard contracts promulgated by the Cyberspace Administration of China (CAC) and any applicable security assessment requirements.</p>
+        <p>We have designated a representative in China for the purposes of PIPL compliance. Details are available on request.</p>
+        <p><strong>Regulatory Authority:</strong> Cyberspace Administration of China (CAC)<br/>Website: cac.gov.cn</p>
+      </div>
+    </section>
+
+    <!-- S14: CHANGES -->
+    <section class="policy-section" id="s14">
+      <div class="section-header">
+        <span class="section-num">14</span>
+        <h2 class="section-title">CHANGES TO THIS POLICY</h2>
+      </div>
+      <p>We may update this Privacy Policy from time to time to reflect changes in our practices, the law or the services we provide. When we make changes, we will update the &ldquo;Last updated&rdquo; date at the top of this policy.</p>
+      <p>For material changes that significantly affect your rights or the way we use your data, we will provide advance notice through one or more of the following means:</p>
+      <ul class="policy-list">
+        <li>A prominent notice on the platform homepage or your account dashboard before the changes take effect.</li>
+        <li>An email notification to the address registered to your account at least 14 days before material changes come into force.</li>
+        <li>In-app notification on your next login.</li>
+      </ul>
+      <p>Your continued use of the platform after the effective date of any updated Privacy Policy constitutes your acknowledgement of the changes. If you do not agree to the updated policy, you should stop using the platform and may request deletion of your account.</p>
+      <p>Previous versions of this Privacy Policy are available on request from our Data Protection Officer.</p>
+    </section>
+
+    <!-- S15: CONTACT -->
+    <section class="policy-section" id="s15">
+      <div class="section-header">
+        <span class="section-num">15</span>
+        <h2 class="section-title">CONTACT US</h2>
+      </div>
+      <p>If you have any questions about this Privacy Policy, wish to exercise your data rights, or want to raise a concern about how we have handled your personal data, please contact our Data Protection Officer using any of the methods below. We aim to respond to all enquiries within five business days and to resolve all rights requests within 30 days.</p>
+
+      <div class="contact-card">
+        <h4>DATA PROTECTION OFFICER</h4>
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          Email: <a href="mailto:privacy@youngmerit.com">privacy@youngmerit.com</a>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          Postal Address: YoungMerit Data Protection Officer, [Registered Office Address to be inserted]
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          Response time: Within 5 business days for enquiries; within 30 days for rights requests
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          Languages accepted: English, Mandarin, French, Spanish
+        </div>
+      </div>
+
+      <div class="highlight-box green" style="margin-top:20px;">
+        <p><strong>Supervisory Authority Complaints</strong>You have the right to complain directly to your national data protection supervisory authority at any time without first contacting us, although we encourage you to reach out to us first so we can attempt to resolve your concern directly. Supervisory authority details for each jurisdiction are provided in Section 13.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div class="policy-footer">
+  <a href="index.html" class="pf-logo">Young<span>Merit</span></a>
+  <div class="pf-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="cookies.html">Cookie Settings</a>
+    <a href="identity-verification.html">Identity Verification</a>
+    <a href="dispute-system.html">Dispute System</a>
+  </div>
+  <div class="pf-copy">Copyright 2026 YoungMerit. All rights reserved. This document is a working draft and requires legal review before publication.</div>
+</div>
+
+<script>
+function toggleMenu(){document.getElementById('sideMenu').classList.toggle('open');document.getElementById('overlay').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');}
+function closeMenu(){document.getElementById('sideMenu').classList.remove('open');document.getElementById('overlay').classList.remove('open');document.getElementById('hamburger').classList.remove('open');}
+
+function scrollTo(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+function showJurisdiction(j, btn){
+  document.querySelectorAll('.jt-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.jt').forEach(el=>el.classList.remove('active'));
+  document.getElementById('jc-'+j).classList.add('active');
+  btn.classList.add('active');
+}
+
+// Highlight active TOC section on scroll
+const sections = document.querySelectorAll('.policy-section');
+const tocItems = document.querySelectorAll('.toc-item');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const id = entry.target.id;
+      const n = id.replace('s','');
+      tocItems.forEach(item=>item.classList.remove('active'));
+      const active = document.querySelector('.toc-item:nth-child('+n+')');
+      if(active) active.classList.add('active');
+    }
+  });
+},{threshold:0.3,rootMargin:'-80px 0px -60% 0px'});
+sections.forEach(s=>observer.observe(s));
+</script>
+<script>
+// ── AUTH NAV SWAP ──
+
+</script>
+<script src="I18n.js"></script>
+</body>
+</html>

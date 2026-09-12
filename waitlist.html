@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Join the Waiting List — YoungMerit</title>
+<meta name="description" content="Be the first to know when YoungMerit launches."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--cream:#F5F0E8;--dark:#1A1208;--brown:#3D2B0F;--amber:#C4861A;--amber-light:#E8A83A;--stone:#8A7560;--stone-light:#D4C9B8;--white:#FDFAF5;--card:#EDE8DE;--green:#3A6B3A;--green-light:#E8F0E8;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--cream);color:var(--dark);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#0E0906;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;padding:0 32px;height:64px;gap:20px;}
+.hamburger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;z-index:1100;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--cream);transition:all 0.3s ease;transform-origin:center;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.logo{font-family:'Archivo Black',sans-serif;font-size:26px;letter-spacing:2px;color:var(--cream);text-decoration:none;flex-shrink:0;}
+.logo span{color:var(--cream);}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
+.nav-link{color:rgba(253,250,245,0.5);text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:6px;transition:all 0.2s;}
+.nav-link:hover{background:rgba(255,255,255,0.07);color:var(--cream);}
+.btn-primary{background:var(--dark);color:var(--cream);border:none;padding:9px 20px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s;}
+nav .btn-primary{background:var(--amber)!important;color:var(--dark)!important;}
+.btn-primary:hover{background:var(--brown);transform:translateY(-1px);}
+
+.overlay{position:fixed;inset:0;background:rgba(26,18,8,0.4);z-index:1040;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.overlay.open{opacity:1;pointer-events:all;}
+.side-menu{position:fixed;top:0;left:0;width:280px;height:100vh;background:var(--white);border-right:1.5px solid var(--stone-light);z-index:1050;transform:translateX(-100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);padding-top:80px;display:flex;flex-direction:column;}
+.side-menu.open{transform:translateX(0);}
+.menu-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--stone);padding:20px 28px 8px;}
+.menu-item{display:flex;align-items:center;gap:12px;padding:13px 28px;text-decoration:none;color:var(--dark);font-weight:500;font-size:15px;border-left:3px solid transparent;transition:all 0.2s;}
+.menu-item:hover,.menu-item.active{background:var(--card);border-left-color:var(--amber);color:var(--brown);}
+.menu-icon{width:18px;height:18px;flex-shrink:0;}
+.menu-bottom{margin-top:auto;padding:20px 28px;border-top:1px solid var(--stone-light);}
+
+/* ── HERO ── */
+.hero{background:#0E0906;padding:120px 48px 60px;position:relative;overflow:hidden;}
+.hero-grain{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;}
+.hero-glow{position:absolute;top:-200px;right:-200px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(196,134,26,0.10) 0%,transparent 65%);pointer-events:none;}
+.hero-glow2{position:absolute;bottom:-300px;left:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(196,134,26,0.06) 0%,transparent 65%);pointer-events:none;}
+.hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(196,134,26,0.10);border:1px solid rgba(196,134,26,0.22);border-radius:100px;padding:6px 14px 6px 8px;margin-bottom:32px;}
+.hero-eyebrow-dot{width:8px;height:8px;border-radius:50%;background:var(--amber);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(0.85)}}
+.hero-eyebrow-text{font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);}
+.hero-title{font-family:'Archivo Black',sans-serif;font-size:clamp(56px,8vw,100px);line-height:0.88;letter-spacing:-1px;color:var(--cream);}
+.hero-title .line2{color:transparent;-webkit-text-stroke:1.5px rgba(253,250,245,0.18);}
+.hero-title .line3{color:var(--amber);}
+.hero-desc{font-size:18px;color:rgba(253,250,245,0.55);line-height:1.65;font-weight:300;max-width:540px;margin-top:24px;}
+.hero-desc strong{color:var(--cream);font-weight:600;}
+.hero-stats{display:flex;gap:40px;margin-top:36px;flex-wrap:wrap;}
+.hstat .num{font-family:'Archivo Black',sans-serif;font-size:48px;color:var(--amber);line-height:1;}
+.hstat .lbl{font-size:12px;color:rgba(253,250,245,0.35);display:block;margin-top:2px;}
+
+/* ── WAITING LIST FORM ── */
+.waitlist-section{background:var(--cream);padding:60px 48px 80px;}
+.waitlist-inner{max-width:1200px;margin:0 auto;}
+.waitlist-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.waitlist-left h2{font-family:'Archivo Black',sans-serif;font-size:52px;color:var(--dark);letter-spacing:1px;line-height:0.95;margin-bottom:20px;}
+.waitlist-left h2 .accent{color:var(--amber);}
+.waitlist-left p{font-size:16px;color:var(--stone);line-height:1.75;margin-bottom:28px;max-width:440px;}
+.benefits{display:flex;flex-direction:column;gap:14px;}
+.benefit{display:flex;align-items:center;gap:14px;font-size:14px;color:var(--brown);}
+.benefit-icon{width:32px;height:32px;border-radius:8px;background:rgba(196,134,26,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+.waitlist-card{background:var(--white);border:1.5px solid var(--stone-light);border-radius:20px;padding:40px;}
+.wc-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:16px;display:block;}
+.wc-title{font-family:'Archivo Black',sans-serif;font-size:28px;color:var(--dark);letter-spacing:1px;margin-bottom:8px;}
+.wc-sub{font-size:14px;color:var(--stone);margin-bottom:28px;line-height:1.6;}
+
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone);margin-bottom:6px;}
+.form-input{width:100%;padding:13px 16px;border:1.5px solid var(--stone-light);border-radius:10px;background:var(--cream);color:var(--dark);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color 0.2s,background 0.2s;}
+.form-input:focus{border-color:var(--amber);background:var(--white);}
+.form-input::placeholder{color:var(--stone-light);}
+.form-input.error{border-color:#B4432A;background:#FDF0EE;}
+.form-input.success{border-color:var(--green);background:var(--green-light);}
+.form-error{font-size:11px;color:#B4432A;margin-top:4px;display:none;}
+.form-error.show{display:block;}
+
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+select.form-input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238A7560' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:42px;cursor:pointer;}
+
+.checkbox-group{display:flex;align-items:flex-start;gap:10px;margin:18px 0 22px;}
+.checkbox-group input[type="checkbox"]{width:16px;height:16px;accent-color:var(--amber);margin-top:2px;cursor:pointer;flex-shrink:0;}
+.checkbox-group label{font-size:12px;color:var(--stone);line-height:1.5;cursor:pointer;}
+.checkbox-group label a{color:var(--amber);text-decoration:none;}
+
+.submit-btn{width:100%;padding:14px;background:var(--dark);color:var(--cream);border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:10px;}
+.submit-btn:hover{background:var(--brown);transform:translateY(-1px);}
+.submit-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.submit-btn .spinner{width:18px;height:18px;border:2px solid rgba(253,250,245,0.2);border-top-color:var(--cream);border-radius:50%;animation:spin 0.7s linear infinite;display:none;}
+.submit-btn.loading .spinner{display:block;}
+.submit-btn.loading .btn-text{opacity:0;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.countdown-note{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:12px;color:var(--stone);}
+.countdown-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:livePulse 1.6s ease infinite;}
+@keyframes livePulse{0%,100%{box-shadow:0 0 0 0 rgba(58,107,58,0.5);}50%{box-shadow:0 0 0 5px rgba(58,107,58,0);}}
+
+/* ── SUCCESS STATE ── */
+.success-screen{display:none;text-align:center;padding:30px 20px;}
+.success-screen.show{display:block;}
+.success-icon{width:72px;height:72px;border-radius:50%;background:var(--green-light);border:3px solid var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
+.success-screen h3{font-family:'Archivo Black',sans-serif;font-size:32px;color:var(--dark);letter-spacing:1px;margin-bottom:10px;}
+.success-screen p{font-size:14px;color:var(--stone);line-height:1.7;max-width:380px;margin:0 auto 8px;}
+.success-screen .ref{font-family:'Archivo Black',sans-serif;font-size:18px;color:var(--amber);letter-spacing:2px;background:rgba(196,134,26,0.08);padding:8px 16px;border-radius:8px;display:inline-block;margin:12px 0 8px;}
+.success-screen .note{font-size:12px;color:var(--stone-light);}
+
+/* ── SOCIAL PROOF ── */
+.social-proof{background:var(--card);padding:48px;}
+.sp-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;}
+.sp-left{display:flex;align-items:center;gap:14px;}
+.sp-avatars{display:flex;}
+.sp-avatar{width:36px;height:36px;border-radius:50%;border:2px solid var(--card);display:flex;align-items:center;justify-content:center;font-family:'Archivo Black',sans-serif;font-size:12px;color:var(--dark);margin-right:-8px;}
+.sp-avatar:last-child{margin-right:0;}
+.sp-avatar.amber{background:var(--amber);}
+.sp-avatar.dark{background:var(--dark);color:var(--cream);}
+.sp-avatar.green{background:var(--green);color:white;}
+.sp-text{font-size:14px;color:var(--stone);}
+.sp-text strong{color:var(--dark);font-weight:600;}
+.sp-logos{display:flex;gap:32px;align-items:center;}
+.sp-logo{font-family:'Archivo Black',sans-serif;font-size:16px;color:var(--stone-light);letter-spacing:2px;}
+
+/* ── FOOTER ── */
+footer{background:#0E0906;border-top:1px solid rgba(255,255,255,0.07);padding:60px 48px 32px;margin-top:0;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:240px 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+.footer-brand .logo{font-size:28px;display:block;margin-bottom:12px;}
+.footer-brand p{font-size:13px;color:var(--stone);line-height:1.7;}
+.footer-col h5{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--stone);margin-bottom:16px;}
+.footer-col a{display:block;font-size:14px;color:rgba(253,250,245,0.75);text-decoration:none;margin-bottom:10px;transition:color 0.2s;}
+.footer-col a:hover{color:var(--amber);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid rgba(255,255,255,0.08);font-size:12px;color:var(--stone);flex-wrap:wrap;gap:12px;}
+.flag-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:20px;border-radius:4px;background:rgba(255,255,255,0.1);color:rgba(253,250,245,0.7);font-size:9px;font-weight:800;letter-spacing:0.5px;font-family:'DM Sans',sans-serif;}
+.footer-flags{display:flex;gap:6px;align-items:center;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1000px){
+  .waitlist-grid{grid-template-columns:1fr;gap:40px;}
+}
+@media(max-width:700px){
+  .hero{padding:100px 20px 40px;}
+  .hero-title{font-size:clamp(40px,12vw,56px);}
+  .waitlist-section{padding:40px 20px 60px;}
+  .waitlist-left h2{font-size:32px;}
+  .form-row{grid-template-columns:1fr;}
+  .hero-stats{gap:20px;}
+  .hero-stats .hstat .num{font-size:32px;}
+  .social-proof{padding:28px 20px;flex-direction:column;text-align:center;}
+  .sp-logos{flex-wrap:wrap;justify-content:center;gap:16px;}
+  .footer-top{grid-template-columns:1fr 1fr;gap:24px;}
+  .nav-link{display:none;}
+  .waitlist-card{padding:24px 20px;}
+}
+
+/* ── AUTH NAV ── */
+.nav-profile-btn{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--dark);font-size:14px;font-weight:600;padding:5px 12px 5px 5px;border-radius:8px;border:1.5px solid var(--stone-light);transition:all 0.2s;background:var(--white);}
+.nav-profile-btn:hover{border-color:var(--amber);background:var(--cream);}
+.nav-avatar{width:30px;height:30px;border-radius:50%;background:var(--amber);color:var(--dark);font-family:'Archivo Black',sans-serif;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-profile-name{max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.nav-logout{color:var(--stone)!important;font-size:13px!important;}
+nav .nav-profile-btn{background:rgba(255,255,255,0.07)!important;border-color:rgba(255,255,255,0.12)!important;color:var(--cream)!important;}
+nav .nav-profile-btn:hover{border-color:var(--amber)!important;background:rgba(255,255,255,0.12)!important;}
+nav .nav-avatar{background:var(--amber)!important;color:var(--dark)!important;}
+nav .nav-profile-name{color:var(--cream)!important;}
+nav .nav-logout{color:rgba(253,250,245,0.5)!important;}
+</style>
+<style>
+.footer-brand p,.footer-col h5,.footer-bottom > span{color:#D8D0A8!important;}
+</style>
+</head>
+<body>
+
+<!-- SIDE MENU -->
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<aside class="side-menu" id="sideMenu">
+  <span class="menu-label">Navigation</span>
+  <a href="index.html" class="menu-item"><span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>Home</a>
+  <a href="find-work.html" class="menu-item"><span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>Find Work</a>
+  <a href="hire-talent.html" class="menu-item"><span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Hire Talent</a>
+  <a href="how-it-works.html" class="menu-item"><span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></span>How It Works</a>
+  <a href="about.html" class="menu-item"><span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>About</a>
+  <a href="pricing.html" class="menu-item"><span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><span data-i18n="nav.pricing">Pricing</span></a>
+  <div class="menu-bottom"><a href="auth.html" class="btn-primary" style="width:100%;text-align:center;display:block;" id="menuCta" data-i18n="nav.signUpFree">Sign Up Free</a></div>
+</aside>
+
+<!-- NAV -->
+<nav>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <a href="index.html" class="logo">Young<span>Merit</span></a>
+  <div class="nav-end"><div class="nav-lang-mount"></div><div class="nav-right"><a href="auth.html" class="nav-link" data-i18n="nav.logIn">Log In</a><a href="auth.html" class="btn-primary" data-i18n="nav.signUp">Sign Up</a></div>
+</div></nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-grain"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      <span class="hero-eyebrow-text" data-i18n="waitlist.hero.eyebrow">Coming soon — early 2026</span>
+    </div>
+    <h1 class="hero-title">
+      <span data-i18n="waitlist.hero.title1">JOIN THE</span><br/>
+      <span class="line2" data-i18n="waitlist.hero.title2">WAITING</span><br/>
+      <span class="line3" data-i18n="waitlist.hero.title3">LIST.</span>
+    </h1>
+    <p class="hero-desc" data-i18n="waitlist.hero.desc" data-i18n-html><strong>Be the first to access it.</strong> We're building the platform where young people build verified work histories and businesses find trusted talent. Sign up below to get early access when we launch.</p>
+    <div class="hero-stats">
+      <div class="hstat"><div class="num" id="waitlistCount">0</div><span class="lbl" data-i18n="waitlist.hero.people">People waiting</span></div>
+      <div class="hstat"><div class="num">6</div><span class="lbl" data-i18n="waitlist.hero.countries">Countries</span></div>
+      <div class="hstat"><div class="num">2026</div><span class="lbl" data-i18n="waitlist.hero.launch">Launch year</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WAITING LIST FORM ─── -->
+<section class="waitlist-section">
+  <div class="waitlist-inner">
+    <div class="waitlist-grid">
+      <!-- LEFT -->
+      <div class="waitlist-left">
+        <h2 data-i18n="waitlist.left.title" data-i18n-html>BE AMONG THE<br/><span class="accent">FIRST.</span></h2>
+        <p data-i18n="waitlist.left.desc">Founding members get exclusive benefits. We're hand-picking the first community to shape how the platform works.</p>
+        <div class="benefits">
+          <div class="benefit"><div class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><span data-i18n="waitlist.benefit1">Founding member badge on your profile</span></div>
+          <div class="benefit"><div class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span data-i18n="waitlist.benefit2">Early access &mdash; days before the public launch</span></div>
+          <div class="benefit"><div class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div><span data-i18n="waitlist.benefit3">Exclusive founder-only community channel</span></div>
+          <div class="benefit"><div class="benefit-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><span data-i18n="waitlist.benefit4">Free platform access for life (founding tier)</span></div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div>
+        <div class="waitlist-card">
+          <span class="wc-label" data-i18n="waitlist.card.label">Get on the list</span>
+
+          <!-- FORM -->
+          <div id="waitlistForm">
+            <div class="wc-title" data-i18n="waitlist.card.title">SECURE YOUR SPOT</div>
+            <p class="wc-sub" data-i18n="waitlist.card.desc">We'll notify you the moment we go live. No spam, no nonsense.</p>
+
+            <div class="form-group">
+              <label data-i18n="waitlist.form.name">Full name</label>
+              <input type="text" class="form-input" id="wlName" placeholder="e.g. Naledi Mokoena" autocomplete="name"/>
+              <div class="form-error" id="nameError" data-i18n="waitlist.form.name.error">Please enter your name</div>
+            </div>
+
+            <div class="form-group">
+              <label data-i18n="waitlist.form.email">Email address</label>
+              <input type="email" class="form-input" id="wlEmail" placeholder="you@email.com" autocomplete="email"/>
+              <div class="form-error" id="emailError" data-i18n="waitlist.form.email.error">Please enter a valid email address</div>
+              <div class="form-error" id="emailDuplicateError" data-i18n="waitlist.form.email.duplicate">This email is already on the waitlist &mdash; we'll be in touch soon.</div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label data-i18n="waitlist.form.type">Account type</label>
+                <select class="form-input" id="wlType">
+                  <option value="worker" data-i18n="waitlist.form.type.worker">Worker &mdash; find tasks</option>
+                  <option value="business" data-i18n="waitlist.form.type.business">Business &mdash; hire talent</option>
+                  <option value="both" data-i18n="waitlist.form.type.both">Both &mdash; I'm interested in both</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label data-i18n="waitlist.form.country">Country</label>
+                <select class="form-input" id="wlCountry">
+                  <option value="za" data-i18n="waitlist.form.country.za">🇿🇦 South Africa</option>
+                  <option value="cn" data-i18n="waitlist.form.country.cn">🇨🇳 China</option>
+                  <option value="us" data-i18n="waitlist.form.country.us">🇺🇸 United States</option>
+                  <option value="fr" data-i18n="waitlist.form.country.fr">🇫🇷 France</option>
+                  <option value="es" data-i18n="waitlist.form.country.es">🇪🇸 Spain</option>
+                  <option value="gb" data-i18n="waitlist.form.country.gb">🇬🇧 United Kingdom</option>
+                  <option value="other" data-i18n="waitlist.form.country.other">🌍 Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="checkbox-group">
+              <input type="checkbox" id="wlConsent"/>
+              <label for="wlConsent" data-i18n="waitlist.form.consent" data-i18n-html>I agree to receive occasional updates from the team. I can unsubscribe at any time. <a href="privacy-policy.html" data-i18n="footer.privacyPolicy">Privacy Policy</a>.</label>
+            </div>
+            <div class="form-error" id="consentError" style="margin-top:-8px;margin-bottom:10px;" data-i18n="waitlist.form.consent.error">Please agree to receive updates</div>
+
+            <div class="form-error" id="wlGenericError" style="margin-top:-8px;margin-bottom:10px;"><span data-i18n="waitlist.form.error.generic">Something went wrong. Please try again.</span><br/><small id="wlGenericErrorDetail" style="opacity:0.7;font-weight:400;"></small></div>
+            <button class="submit-btn" id="wlSubmitBtn" onclick="submitWaitlist()">
+              <span class="btn-text" data-i18n="waitlist.form.cta">Secure my spot</span>
+              <div class="spinner"></div>
+            </button>
+
+            <div class="countdown-note">
+              <div class="countdown-dot"></div>
+              <span data-i18n="waitlist.form.note">Launching soon &mdash; we'll email you first</span>
+            </div>
+          </div>
+
+          <!-- SUCCESS -->
+          <div class="success-screen" id="successScreen">
+            <div class="success-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <h3 data-i18n="waitlist.success.title">YOU'RE ON THE LIST.</h3>
+            <p data-i18n="waitlist.success.desc">You are successfully added to the waiting list for our launch. When the time is near, we'll let you know.</p>
+            <div class="ref" id="wlRef">WL-2026-00001</div>
+            <button class="submit-btn" style="margin-top:20px;background:transparent;border:1.5px solid var(--stone-light);color:var(--dark);" onclick="window.location.href='waitlist.html'" data-i18n="waitlist.success.back">Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SOCIAL PROOF ─── -->
+<div class="social-proof">
+  <div class="sp-inner">
+    <div class="sp-left">
+      <div class="sp-avatars">
+        <div class="sp-avatar amber">NM</div>
+        <div class="sp-avatar dark">LW</div>
+        <div class="sp-avatar green">CR</div>
+        <div class="sp-avatar amber" style="margin-left:2px;">+</div>
+      </div>
+      <div class="sp-text">
+        <strong id="socialCount">Join 200+ future members</strong><br/>
+        <span data-i18n="waitlist.social.text">Already on the waitlist across 6 countries</span>
+      </div>
+    </div>
+    <div class="sp-logos">
+      <span class="sp-logo" data-i18n="waitlist.social.tag1">FOUNDING</span>
+      <span class="sp-logo" data-i18n="waitlist.social.tag2">EARLY</span>
+      <span class="sp-logo" data-i18n="waitlist.social.tag3">ACCESS</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><a href="index.html" class="logo">Young<span>Merit</span></a><p data-i18n="footer.tagline">We are on a mission to create a world where opportunity is earned, not given.</p></div>
+      <div class="footer-col"><h5 data-i18n="footer.platform">Platform</h5><a href="find-work.html" data-i18n="footer.findWork">Find Work</a><a href="hire-talent.html" data-i18n="footer.hireTalent">Hire Talent</a><a href="how-it-works.html" data-i18n="footer.howItWorks">How It Works</a><a href="resources.html" data-i18n="footer.resources">Resources</a></div>
+      <div class="footer-col"><h5 data-i18n="footer.company">Company</h5><a href="about.html" data-i18n="footer.aboutYOUNGMERIT">About Us</a><a href="careers.html" data-i18n="footer.careers">Careers</a><a href="community.html" data-i18n="footer.community">Community</a><a href="contact.html" data-i18n="footer.contact">Contact</a></div>
+      <div class="footer-col"><h5 data-i18n="footer.trustSafety">Trust &amp; Safety</h5><a href="identity-verification.html" data-i18n="footer.identityVerification">Identity Verification</a><a href="dispute-system.html" data-i18n="footer.disputeSystem">Dispute System</a><a href="privacy-policy.html" data-i18n="footer.privacyPolicy">Privacy Policy</a><a href="terms.html" data-i18n="footer.termsOfService">Terms of Service</a><a href="cookies.html" data-i18n="footer.cookieSettings">Cookie Settings</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.copyright">Copyright 2026 YOUNGMERIT. All rights reserved.</span>
+      <div class="footer-flags"><span class="flag-badge">ZA</span><span class="flag-badge">ES</span><span class="flag-badge">FR</span><span class="flag-badge">GB</span><span class="flag-badge">CN</span><span class="flag-badge">US</span></div>
+      <span data-i18n="footer.builtFor">Built for youth. Trusted by business.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── SUPABASE ─── -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+if (!window.__honeWaitlistInit) {
+window.__honeWaitlistInit = true;
+console.log("YoungMerit waitlist.html loaded -- BUILD v2026-08-30-FINAL");
+const SUPA_URL = 'https://asireievwpaijfdzdcxm.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFzaXJlaWV2d3BhaWpmZHpkY3htIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ5OTMyMjcsImV4cCI6MjEwMDU2OTIyN30.nd9dhJ388XZhwTgyFcgcZ4b4msypf4pDzz6IX0_27Hk';
+const ymSupabaseClient = window.supabase.createClient(SUPA_URL, SUPA_KEY);
+
+function toggleMenu(){document.getElementById('sideMenu').classList.toggle('open');document.getElementById('overlay').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');}
+function closeMenu(){['sideMenu','overlay','hamburger'].forEach(id=>document.getElementById(id).classList.remove('open'));}
+
+let lastWaitlistCount = 0;
+function updateSocialCountText(){
+  var el = document.getElementById('socialCount');
+  if (!el) return;
+  var tmpl = (window.HONEI18N && window.HONEI18N.t) ? window.HONEI18N.t('waitlist.social.join') : 'Join {count}+ future members';
+  el.textContent = tmpl.replace('{count}', lastWaitlistCount);
+}
+async function fetchWaitlistCount() {
+  try {
+    // Uses a security-definer RPC function instead of a direct table read,
+    // so the anon key can get the live count without ever being able to
+    // read individual signups (name/email) from the client.
+    const { data, error } = await ymSupabaseClient.rpc('get_waitlist_count');
+    if (error) throw error;
+    const displayCount = data || 0;
+    document.getElementById('waitlistCount').textContent = displayCount;
+    lastWaitlistCount = displayCount;
+    updateSocialCountText();
+  } catch (err) {
+    const localCount = localStorage.getItem('HONE_waitlist_count') || 187;
+    document.getElementById('waitlistCount').textContent = localCount;
+    lastWaitlistCount = localCount;
+    updateSocialCountText();
+  }
+}
+var _prevOnHONELangChange = window.onHONELangChange;
+window.onHONELangChange = function(){
+  if (typeof _prevOnHONELangChange === 'function') _prevOnHONELangChange();
+  updateSocialCountText();
+};
+
+async function submitWaitlist() {
+  const name = document.getElementById('wlName').value.trim();
+  const email = document.getElementById('wlEmail').value.trim();
+  const type = document.getElementById('wlType').value;
+  const country = document.getElementById('wlCountry').value;
+  const consent = document.getElementById('wlConsent').checked;
+  let valid = true;
+
+  document.querySelectorAll('.form-error').forEach(e => e.classList.remove('show'));
+  document.querySelectorAll('.form-input').forEach(e => e.classList.remove('error', 'success'));
+
+  if (!name || name.length < 2) {
+    document.getElementById('nameError').classList.add('show');
+    document.getElementById('wlName').classList.add('error');
+    valid = false;
+  } else {
+    document.getElementById('wlName').classList.add('success');
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  if (!email || !emailRegex.test(email)) {
+    document.getElementById('emailError').classList.add('show');
+    document.getElementById('wlEmail').classList.add('error');
+    valid = false;
+  } else {
+    document.getElementById('wlEmail').classList.add('success');
+  }
+
+  if (!consent) {
+    document.getElementById('consentError').classList.add('show');
+    valid = false;
+  }
+
+  if (!valid) return;
+
+  const btn = document.getElementById('wlSubmitBtn');
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  const ref = 'WL-2026-' + String(Math.floor(Math.random() * 90000) + 10000);
+
+  try {
+    const { error } = await ymSupabaseClient.from('waitlist').insert([{
+      name: name,
+      email: email,
+      account_type: type,
+      country: country,
+      referral_code: ref,
+      consent: consent,
+      created_at: new Date().toISOString()
+    }]);
+
+    if (error) throw error;
+
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    document.getElementById('wlRef').textContent = ref;
+    document.getElementById('waitlistForm').style.display = 'none';
+    document.getElementById('successScreen').classList.add('show');
+
+    const entries = JSON.parse(localStorage.getItem('HONE_waitlist_entries') || '[]');
+    entries.push({ name, email, type, country, date: new Date().toISOString(), ref });
+    localStorage.setItem('HONE_waitlist_entries', JSON.stringify(entries));
+
+    fetchWaitlistCount();
+
+  } catch (err) {
+    console.error('YoungMerit waitlist submission error:', err);
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    // Postgres unique-violation code for a duplicate email signup
+    if (err && err.code === '23505') {
+      document.getElementById('emailDuplicateError').classList.add('show');
+      document.getElementById('wlEmail').classList.add('error');
+    } else {
+      var detailEl = document.getElementById('wlGenericErrorDetail');
+      if (detailEl) {
+        // Shown only so this is diagnosable during setup/testing -- e.g. if the
+        // waitlist table hasn't been created in Supabase yet, this will say so.
+        detailEl.textContent = (err && (err.message || err.error_description)) || '';
+      }
+      document.getElementById('wlGenericError').classList.add('show');
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', fetchWaitlistCount);
+
+// Explicitly attach these to window so the inline onclick="..." attributes
+// in the HTML can always find them, regardless of function-hoisting quirks
+// (async functions declared inside a block are NOT auto-hoisted to global
+// scope the way plain functions are -- this is what broke submitWaitlist).
+window.submitWaitlist = submitWaitlist;
+window.toggleMenu = toggleMenu;
+window.closeMenu = closeMenu;
+}
+</script>
+<script src="I18n.js"></script>
+</body>
+</html>

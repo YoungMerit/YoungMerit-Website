@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Terms of Service — YoungMerit</title>
+<meta name="description" content="YoungMerit Terms of Service — the rules, rights and responsibilities for using our platform."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--cream:#F5F0E8;--dark:#1A1208;--brown:#3D2B0F;--amber:#C4861A;--amber-light:#E8A83A;--stone:#8A7560;--stone-light:#D4C9B8;--white:#FDFAF5;--card:#EDE8DE;--green:#3A6B3A;--green-light:#E8F0E8;}
+
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}}
+body{background:var(--cream);color:var(--dark);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#0E0906;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;padding:0 32px;height:64px;gap:20px;}
+.hamburger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;z-index:1100;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--cream);transition:all 0.3s ease;transform-origin:center;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.logo{font-family:'Archivo Black',sans-serif;font-size:26px;letter-spacing:2px;color:var(--cream);text-decoration:none;flex-shrink:0;}
+.logo span{color:var(--cream);}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
+.nav-link{color:rgba(253,250,245,0.5);text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:6px;transition:all 0.2s;}
+.nav-link:hover{background:rgba(255,255,255,0.07);color:var(--cream);}
+.nav-link.active{color:var(--amber);}
+.btn-primary{background:var(--amber);color:var(--dark);border:none;padding:9px 20px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s;}
+.btn-primary:hover{background:var(--amber-light);transform:translateY(-1px);}
+.overlay{position:fixed;inset:0;background:rgba(26,18,8,0.4);z-index:1040;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.overlay.open{opacity:1;pointer-events:all;}
+.side-menu{position:fixed;top:0;left:0;width:280px;height:100vh;background:var(--white);border-right:1.5px solid var(--stone-light);z-index:1050;transform:translateX(-100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);padding-top:80px;display:flex;flex-direction:column;}
+.side-menu.open{transform:translateX(0);}
+.menu-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--stone);padding:20px 28px 8px;}
+.menu-item{display:flex;align-items:center;gap:12px;padding:13px 28px;text-decoration:none;color:var(--dark);font-weight:500;font-size:15px;border-left:3px solid transparent;transition:all 0.2s;}
+.menu-item:hover,.menu-item.active{background:var(--card);border-left-color:var(--amber);color:var(--brown);}
+.menu-icon{width:18px;height:18px;flex-shrink:0;}
+.menu-bottom{margin-top:auto;padding:20px 28px;border-top:1px solid var(--stone-light);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.anim-1{animation:fadeUp 0.6s ease 0.1s both;}
+.anim-2{animation:fadeUp 0.6s ease 0.25s both;}
+
+/* HERO */
+.hero{background:#0E0906;padding:120px 48px 80px;position:relative;overflow:hidden;}
+.hero::before{content:'LEGAL';position:absolute;bottom:-40px;right:-20px;font-family:'Archivo Black',sans-serif;font-size:260px;color:rgba(255,255,255,0.02);letter-spacing:8px;pointer-events:none;white-space:nowrap;line-height:1;}
+.hero-inner{max-width:1200px;margin:0 auto;}
+.breadcrumb{font-size:12px;color:var(--stone);margin-bottom:22px;display:flex;align-items:center;gap:6px;}
+.breadcrumb a{color:var(--stone);text-decoration:none;}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:14px;display:block;}
+.hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(48px,6vw,80px);line-height:0.92;letter-spacing:1px;color:var(--cream);margin-bottom:18px;}
+.hero h1 .accent{color:var(--amber);}
+.hero-meta{font-size:13px;color:var(--stone);display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.hero-meta span{display:flex;align-items:center;gap:6px;}
+.meta-dot{width:5px;height:5px;border-radius:50%;background:var(--amber);display:inline-block;}
+
+/* NOTICE */
+.notice-bar{background:rgba(196,134,26,0.08);border:1px solid rgba(196,134,26,0.2);border-left:3px solid var(--amber);padding:14px 20px;font-size:13px;color:var(--stone);line-height:1.6;}
+.notice-bar strong{color:var(--amber-light);}
+
+/* LAYOUT */
+.page-body{max-width:1200px;margin:0 auto;padding:64px 48px 100px;display:grid;grid-template-columns:220px 1fr;gap:64px;}
+
+/* TOC */
+.toc{position:sticky;top:84px;height:fit-content;align-self:start;}
+.toc-heading{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--stone);margin-bottom:14px;}
+.toc-list{list-style:none;border-left:1.5px solid var(--stone-light);}
+.toc-list li a{display:block;padding:.3rem 0 .3rem 14px;color:var(--stone);text-decoration:none;font-size:13px;border-left:2px solid transparent;margin-left:-1.5px;transition:all 0.2s;}
+.toc-list li a:hover,.toc-list li a.active{color:var(--brown);border-left-color:var(--amber);}
+
+/* SECTIONS */
+.section{margin-bottom:48px;scroll-margin-top:80px;}
+.sec-num{font-family:'Archivo Black',sans-serif;font-size:13px;letter-spacing:2px;color:var(--amber);margin-bottom:6px;display:block;}
+.section h2{font-family:'Archivo Black',sans-serif;font-size:32px;color:var(--dark);letter-spacing:1px;margin-bottom:16px;padding-bottom:12px;border-bottom:1.5px solid var(--stone-light);}
+.section p{color:var(--stone);font-size:14px;line-height:1.8;margin-bottom:12px;}
+.section p:last-child{margin-bottom:0;}
+.section ul,.section ol{color:var(--stone);font-size:14px;line-height:1.8;margin:8px 0 12px 20px;}
+.section li{margin-bottom:4px;}
+.section h3{font-size:14px;font-weight:600;color:var(--dark);margin:20px 0 8px;}
+.section a{color:var(--amber);text-decoration:none;}
+.section a:hover{text-decoration:underline;}
+
+/* TABLE */
+.jur-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;}
+.jur-table th{text-align:left;padding:10px 14px;color:var(--stone);font-weight:600;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;background:var(--card);border-bottom:1.5px solid var(--stone-light);}
+.jur-table td{padding:10px 14px;color:var(--brown);border-bottom:1px solid var(--stone-light);}
+.jur-table tr:last-child td{border-bottom:none;}
+.jur-table td:first-child{color:var(--dark);font-weight:500;}
+
+/* OUTCOME PILLS */
+.pill{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:600;letter-spacing:.5px;}
+.pill-green{background:var(--green-light);color:var(--green);}
+.pill-amber{background:rgba(196,134,26,0.12);color:var(--amber);}
+
+/* CONTACT BOX */
+.contact-box{background:var(--white);border:1.5px solid var(--stone-light);border-radius:16px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:16px;}
+.contact-item .label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--stone);margin-bottom:4px;display:block;}
+.contact-item a{color:var(--amber);text-decoration:none;font-size:14px;}
+.contact-item span{color:var(--brown);font-size:14px;}
+
+.disclaimer{background:var(--card);border-radius:10px;padding:16px 20px;font-size:12px;color:var(--stone);line-height:1.7;margin-top:40px;border:1px solid var(--stone-light);}
+
+/* FOOTER */
+footer{background:#0E0906;border-top:1px solid rgba(255,255,255,0.07);padding:60px 48px 32px;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:240px 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+.footer-brand .logo{font-size:28px;display:block;margin-bottom:12px;}
+.footer-brand p{font-size:13px;color:var(--stone);line-height:1.7;}
+.footer-col h5{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--stone);margin-bottom:16px;}
+.footer-col a{display:block;font-size:14px;color:rgba(253,250,245,0.75);text-decoration:none;margin-bottom:10px;transition:color 0.2s;}
+.footer-col a:hover{color:var(--amber);}
+.footer-col a.active-link{color:var(--amber);font-weight:600;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid rgba(255,255,255,0.08);font-size:12px;color:var(--stone);flex-wrap:wrap;gap:12px;}
+.flag-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:20px;border-radius:4px;background:rgba(255,255,255,0.1);color:rgba(253,250,245,0.7);font-size:9px;font-weight:800;letter-spacing:0.5px;font-family:'DM Sans',sans-serif;}
+.footer-flags{display:flex;gap:6px;align-items:center;}
+.policy-footer{background:#0E0906;padding:48px;margin-top:80px;text-align:center;}
+.pf-logo{font-family:'Archivo Black',sans-serif;font-size:28px;color:var(--cream);letter-spacing:2px;text-decoration:none;display:inline-block;margin-bottom:14px;}
+.pf-logo span{color:var(--cream);}
+.pf-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;}
+.pf-links a{font-size:13px;color:rgba(253,250,245,0.4);text-decoration:none;transition:color 0.2s;}
+.pf-links a:hover{color:var(--cream);}
+.pf-copy{font-size:12px;color:rgba(253,250,245,0.2);}
+
+@media(max-width:900px){.page-body{grid-template-columns:1fr;}.toc{display:none;}}
+@media(max-width:640px){.hero{padding:100px 20px 60px;}.page-body{padding:40px 20px 60px;}.footer-top{grid-template-columns:1fr 1fr;gap:24px;}.nav-link{display:none;}.contact-box{grid-template-columns:1fr;}}
+
+/* ── AUTH NAV ── */
+.nav-profile-btn{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--dark);font-size:14px;font-weight:600;padding:5px 12px 5px 5px;border-radius:8px;border:1.5px solid var(--stone-light);transition:all 0.2s;background:var(--white);}
+.nav-profile-btn:hover{border-color:var(--amber);background:var(--cream);}
+.nav-avatar{width:30px;height:30px;border-radius:50%;background:var(--amber);color:var(--dark);font-family:'Archivo Black',sans-serif;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-profile-name{max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.nav-logout{color:var(--stone)!important;font-size:13px!important;}
+/* dark nav variant (index hero) */
+nav .nav-profile-btn{background:rgba(255,255,255,0.07)!important;border-color:rgba(255,255,255,0.12)!important;color:var(--cream)!important;}
+nav .nav-profile-btn:hover{border-color:var(--amber)!important;background:rgba(255,255,255,0.12)!important;}
+nav .nav-avatar{background:var(--amber)!important;color:var(--dark)!important;}
+nav .nav-profile-name{color:var(--cream)!important;}
+nav .nav-logout{color:rgba(253,250,245,0.5)!important;}
+
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<aside class="side-menu" id="sideMenu">
+  <span class="menu-label">Navigation</span>
+  <a href="index.html" class="menu-item">
+    <span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>Home</a>
+  <a href="find-work.html" class="menu-item">
+    <span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>Find Work</a>
+  <a href="hire-talent.html" class="menu-item">
+    <span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Hire Talent</a>
+  <a href="how-it-works.html" class="menu-item">
+    <span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></span>How It Works</a>
+  <a href="about.html" class="menu-item">
+    <span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>About</a>
+  <a href="pricing.html" class="menu-item"><span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><span data-i18n="nav.pricing">Pricing</span></a>
+  <span class="menu-label" style="margin-top:8px;">My Profile</span>
+  <div class="menu-bottom">
+    <a href="auth.html" class="btn-primary" style="width:100%;text-align:center;display:block;" id="menuCta">Sign Up Free</a>
+  </div>
+</aside>
+
+<nav>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <a href="index.html" class="logo">Young<span>Merit</span></a>
+  <div class="nav-end"><div class="nav-lang-mount"></div><div class="nav-right"><a href="auth.html" class="nav-link">Log In</a><a href="auth.html" class="btn-primary">Sign Up</a></div>
+</div></nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb anim-1"><a href="index.html">Home</a><span style="color:rgba(255,255,255,0.15);">›</span><span style="color:var(--stone);">Terms of Service</span></div>
+    <span class="eyebrow anim-1">Legal</span>
+    <h1 class="anim-2">TERMS OF<br/><span class="accent">SERVICE.</span></h1>
+    <div class="hero-meta anim-2">
+      <span><span class="meta-dot"></span>Effective: 1 July 2025</span>
+      <span>Last updated: June 2025</span>
+      <span>Version 1.0</span>
+    </div>
+  </div>
+</section>
+
+<div style="background:var(--cream);">
+  <div style="max-width:1200px;margin:0 auto;padding:0 48px;">
+    <div class="notice-bar">
+      <strong>Plain-language summary:</strong> These terms govern your use of YoungMerit. Workers find tasks and get paid through secure escrow. Businesses post tasks and pay workers. We take a 10% commission on each completed task. Read Section 6 (Wallet &amp; Payments) and Section 8 (Disputes) carefully.
+    </div>
+    <div class="notice-bar" style="margin-top:12px;" data-i18n="legal.englishOnlyNotice" data-i18n-html>This document is provided in English only. If you have questions, please <a href="contact.html" style="color:inherit;text-decoration:underline;">contact our support team</a> in your preferred language.</div>
+  </div>
+</div>
+
+<div class="page-body">
+
+  <!-- TOC -->
+  <aside class="toc">
+    <p class="toc-heading">On this page</p>
+    <ul class="toc-list">
+      <li><a href="#acceptance">1. Acceptance</a></li>
+      <li><a href="#platform">2. The Platform</a></li>
+      <li><a href="#accounts">3. Accounts</a></li>
+      <li><a href="#workers">4. Workers</a></li>
+      <li><a href="#businesses">5. Businesses</a></li>
+      <li><a href="#wallet">6. Wallet &amp; Payments</a></li>
+      <li><a href="#commission">7. Commission</a></li>
+      <li><a href="#disputes">8. Disputes</a></li>
+      <li><a href="#identity">9. Identity Verification</a></li>
+      <li><a href="#prohibited">10. Prohibited Conduct</a></li>
+      <li><a href="#content">11. Content &amp; IP</a></li>
+      <li><a href="#liability">12. Liability</a></li>
+      <li><a href="#termination">13. Termination</a></li>
+      <li><a href="#governing">14. Governing Law</a></li>
+      <li><a href="#changes">15. Changes</a></li>
+      <li><a href="#contact">16. Contact</a></li>
+    </ul>
+  </aside>
+
+  <!-- CONTENT -->
+  <main>
+
+    <section class="section" id="acceptance">
+      <span class="sec-num">01</span>
+      <h2>ACCEPTANCE OF TERMS</h2>
+      <p>By creating an account, clicking "I agree," or otherwise accessing or using YoungMerit ("the Platform," "we," "us"), you agree to be bound by these Terms of Service ("Terms"), our <a href="privacy-policy.html">Privacy Policy</a>, and any additional guidelines posted on the Platform.</p>
+      <p>If you do not agree to these Terms, you must not use the Platform. These Terms constitute a legally binding agreement between you and YoungMerit (Pty) Ltd, a company registered in South Africa.</p>
+      <p>If you are using the Platform on behalf of a business, you represent that you have authority to bind that business to these Terms, and references to "you" include that business.</p>
+    </section>
+
+    <section class="section" id="platform">
+      <span class="sec-num">02</span>
+      <h2>WHAT WE DO</h2>
+      <p>We are an online labour marketplace that connects young workers ("Workers") with businesses ("Businesses") for short-term and project-based tasks. We provide:</p>
+      <ul>
+        <li>A task-listing and application system</li>
+        <li>Identity verification and trust scoring</li>
+        <li>A secure escrow wallet for holding and releasing payments</li>
+        <li>A dispute mediation service</li>
+        <li>Worker profiles, Skill Passports, and reputation infrastructure</li>
+      </ul>
+      <p>We are a technology intermediary. We are not an employer, employment agency, staffing firm, or party to any agreement between a Worker and a Business. The working relationship, including obligations around tax, insurance, and compliance, exists solely between the Worker and the Business.</p>
+    </section>
+
+    <section class="section" id="accounts">
+      <span class="sec-num">03</span>
+      <h2>ACCOUNTS &amp; REGISTRATION</h2>
+      <h3>Eligibility</h3>
+      <p>To register as a Worker, you must be at least 16 years old. To register as a Business, you must be at least 18 years old and authorised to enter contracts on behalf of your organisation. Workers between 16–17 may require a guardian to countersign in certain jurisdictions.</p>
+      <h3>Account security</h3>
+      <p>You are responsible for keeping your password confidential and for all activity that occurs under your account. Notify us immediately at <a href="mailto:security@growiq.co">security@growiq.co</a> if you suspect unauthorised access.</p>
+      <h3>Accurate information</h3>
+      <p>You agree to provide truthful, current, and complete information during registration and to keep it updated. Providing false information, including impersonating another person or business, is grounds for immediate termination.</p>
+      <h3>One account per person</h3>
+      <p>Each natural person may hold one Worker account. Businesses may hold one Business account per registered legal entity. Creating duplicate accounts to circumvent suspensions is prohibited.</p>
+    </section>
+
+    <section class="section" id="workers">
+      <span class="sec-num">04</span>
+      <h2>WORKER TERMS</h2>
+      <h3>Independent contractor status</h3>
+      <p>Workers are independent contractors, not employees of ours or of any Business, unless separately agreed in writing between the Worker and the Business outside the Platform.</p>
+      <h3>Task acceptance</h3>
+      <p>When a Business selects you for a task, you enter into a direct service agreement with that Business. We are not a party to that agreement. You are responsible for completing the task to the standard described in the task listing.</p>
+      <h3>Skill Passport</h3>
+      <p>Your completed tasks, ratings, and verified credentials form your Skill Passport. We may display this data publicly on your profile. You grant us a non-exclusive licence to display this information for platform purposes.</p>
+      <h3>Tax obligations</h3>
+      <p>You are solely responsible for declaring and paying any income tax, VAT, or other levies arising from payments received through the Platform. We do not withhold tax on your behalf.</p>
+    </section>
+
+    <section class="section" id="businesses">
+      <span class="sec-num">05</span>
+      <h2>BUSINESS TERMS</h2>
+      <h3>Task listings</h3>
+      <p>Task listings must be accurate, lawful, and must not discriminate on prohibited grounds. We reserve the right to remove listings that violate these Terms or applicable law without notice.</p>
+      <h3>Funding obligation</h3>
+      <p>Before a task can go live and be assigned to a Worker, the full task payment must be deposited into your Wallet and placed in escrow. Tasks cannot be posted without pre-funded escrow.</p>
+      <h3>Business verification</h3>
+      <p>Businesses must complete identity and company verification before posting tasks. Verification requirements vary by task value and jurisdiction.</p>
+      <h3>Worker rights</h3>
+      <p>Businesses must not instruct Workers to perform tasks that are illegal, unsafe, or outside the agreed scope. Businesses may not use the Platform to negotiate off-platform payments to avoid commission.</p>
+    </section>
+
+    <section class="section" id="wallet">
+      <span class="sec-num">06</span>
+      <h2>WALLET &amp; PAYMENTS</h2>
+      <h3>How the wallet works</h3>
+      <p>Each user has a Wallet. Businesses load funds via supported payment methods (card, bank transfer, or mobile money where available). Worker payments are received into their Wallet and can be withdrawn to a linked bank account or mobile money account.</p>
+      <h3>Escrow</h3>
+      <p>When a Business assigns a task to a Worker, the task payment is locked in escrow. Funds remain in escrow until:</p>
+      <ul>
+        <li>The Business marks the task complete and approves payment, <strong>or</strong></li>
+        <li>A dispute is resolved in the Worker's favour, <strong>or</strong></li>
+        <li>The task is cancelled and a refund is issued per Section 8</li>
+      </ul>
+      <h3>Release</h3>
+      <p>Upon Business approval, funds are split automatically: 90% is released to the Worker instantly and 10% is retained by us as the platform fee (see Section 7).</p>
+      <h3>Withdrawals</h3>
+      <p>Withdrawal processing times and minimum amounts vary by country. We are not responsible for delays caused by third-party payment providers, banks, or mobile money networks.</p>
+      <h3>Currency</h3>
+      <p>Transactions are processed in the local currency of the Business's registered country, where supported. Cross-currency conversion fees may apply and will be disclosed at checkout.</p>
+    </section>
+
+    <section class="section" id="commission">
+      <span class="sec-num">07</span>
+      <h2>PLATFORM COMMISSION</h2>
+      <p>We charge a <strong>10% platform commission</strong> on every successfully completed task. This fee is deducted automatically before the Worker receives their portion.</p>
+      <p><strong>Example:</strong> A task valued at R1,000 results in R900 to the Worker and R100 to us.</p>
+      <p>The commission covers platform infrastructure, payment processing, identity verification, dispute mediation, and customer support. No additional fees are charged to Workers for standard use.</p>
+      <p>We reserve the right to change the commission rate with 30 days' notice. The new rate applies only to tasks posted after the effective date of the change.</p>
+    </section>
+
+    <section class="section" id="disputes">
+      <span class="sec-num">08</span>
+      <h2>DISPUTES &amp; REFUNDS</h2>
+      <h3>Raising a dispute</h3>
+      <p>Either party may raise a dispute within <strong>7 days</strong> of a task's marked completion date via the <a href="dispute-system.html">Disputes</a> page. Disputes raised after this window may not be eligible for mediation.</p>
+      <h3>Mediation process</h3>
+      <p>Our dispute team reviews evidence submitted by both parties (messages, deliverables, task descriptions). We aim to respond within 3 business days. Our decision determines how escrowed funds are released.</p>
+      <h3>Outcomes</h3>
+      <ul>
+        <li><span class="pill pill-green">Worker wins</span> — escrowed funds released to the Worker</li>
+        <li><span class="pill pill-amber">Business wins</span> — escrowed funds refunded to the Business wallet</li>
+        <li><span class="pill pill-amber">Partial resolution</span> — funds split per the mediator's determination</li>
+      </ul>
+      <h3>Cancellations</h3>
+      <p>If a Business cancels before work begins, the full escrowed amount is refunded. If cancelled after work has commenced, we may award partial payment to the Worker based on work completed.</p>
+    </section>
+
+    <section class="section" id="identity">
+      <span class="sec-num">09</span>
+      <h2>IDENTITY VERIFICATION</h2>
+      <p>We use a third-party identity verification provider to verify user identities. By submitting your identity documents, you consent to our provider processing your personal information for verification purposes.</p>
+      <p>Verification data is handled in accordance with our <a href="privacy-policy.html">Privacy Policy</a>. We do not store copies of identity documents beyond the period required for verification.</p>
+      <p>Submitting fraudulent, altered, or another person's identity documents is a criminal offence in all jurisdictions where we operate and will result in immediate permanent termination and referral to relevant authorities.</p>
+    </section>
+
+    <section class="section" id="prohibited">
+      <span class="sec-num">10</span>
+      <h2>PROHIBITED CONDUCT</h2>
+      <p>You must not use the Platform to:</p>
+      <ul>
+        <li>Engage in or facilitate any unlawful activity</li>
+        <li>Circumvent platform fees by arranging off-platform payments for tasks originating on the Platform</li>
+        <li>Harass, discriminate against, or abuse other users</li>
+        <li>Submit false reviews, ratings, or task completion reports</li>
+        <li>Use automated tools, bots, or scripts to scrape or interact with the Platform</li>
+        <li>Reverse-engineer, copy, or create derivative works from the Platform</li>
+        <li>Post tasks involving illegal work, hazardous conditions, or work minors are legally prohibited from performing</li>
+        <li>Share your account credentials with any other person</li>
+        <li>Post content that is defamatory, hateful, sexually explicit, or infringes third-party intellectual property</li>
+      </ul>
+      <p>Violation may result in suspension, termination, forfeiture of wallet funds, and/or referral to law enforcement.</p>
+    </section>
+
+    <section class="section" id="content">
+      <span class="sec-num">11</span>
+      <h2>CONTENT &amp; INTELLECTUAL PROPERTY</h2>
+      <h3>Your content</h3>
+      <p>You retain ownership of content you create and upload. By posting content on the Platform, you grant us a worldwide, royalty-free licence to display and distribute that content in connection with operating and promoting the Platform.</p>
+      <h3>Work product</h3>
+      <p>Ownership of deliverables produced during a task is determined by the agreement between the Worker and the Business. We recommend parties specify IP ownership clearly in the task description.</p>
+      <h3>Our IP</h3>
+      <p>The Platform, including its design, software, brand, and content, is owned by us and protected by copyright, trademark, and other laws. You may not use our name, logo, or branding without written permission.</p>
+    </section>
+
+    <section class="section" id="liability">
+      <span class="sec-num">12</span>
+      <h2>LIMITATION OF LIABILITY</h2>
+      <p>To the maximum extent permitted by applicable law:</p>
+      <ul>
+        <li>The Platform is provided "as is" without warranties of any kind, express or implied.</li>
+        <li>We are not liable for the actions, omissions, or conduct of any Worker or Business on the Platform.</li>
+        <li>We are not liable for any indirect, incidental, special, consequential, or punitive damages.</li>
+        <li>Our total aggregate liability shall not exceed fees paid by you to us in the 3 months preceding the claim.</li>
+      </ul>
+      <p>Some jurisdictions do not allow the exclusion of certain warranties, so these limitations apply to the fullest extent permitted by law in those cases.</p>
+    </section>
+
+    <section class="section" id="termination">
+      <span class="sec-num">13</span>
+      <h2>TERMINATION</h2>
+      <p>You may close your account at any time by contacting <a href="mailto:support@growiq.co">support@growiq.co</a>. Before closing, you must complete or withdraw from any active tasks and withdraw available wallet funds.</p>
+      <p>We may suspend or terminate your account at any time for breach of these Terms, fraudulent or illegal activity, extended inactivity (12+ months), or regulatory requirements.</p>
+      <p>On termination, escrowed funds tied to active disputes will be held pending resolution. Available wallet balances will be returned to you via your linked payout method, less any amounts owed to us.</p>
+    </section>
+
+    <section class="section" id="governing">
+      <span class="sec-num">14</span>
+      <h2>GOVERNING LAW &amp; JURISDICTIONS</h2>
+      <p>These Terms are governed by the laws of South Africa. Disputes are subject to the exclusive jurisdiction of the courts of South Africa. The following local laws also apply to users in their respective territories:</p>
+      <table class="jur-table">
+        <thead>
+          <tr><th>Country</th><th>Key applicable law</th><th>Data protection</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>🇿🇦 South Africa</td><td>Basic Conditions of Employment Act; COIDA</td><td>POPIA</td></tr>
+          <tr><td>🇰🇪 Kenya</td><td>Employment Act (Cap. 226)</td><td>Data Protection Act 2019</td></tr>
+          <tr><td>🇳🇬 Nigeria</td><td>Labour Act; Factories Act</td><td>NDPR 2019</td></tr>
+          <tr><td>🇬🇭 Ghana</td><td>Labour Act 2003 (Act 651)</td><td>Data Protection Act 2012</td></tr>
+          <tr><td>🇷🇼 Rwanda</td><td>Labour Law No. 66/2018</td><td>Law No. 058/2021</td></tr>
+          <tr><td>🇹🇿 Tanzania</td><td>Employment &amp; Labour Relations Act</td><td>Personal Data Protection Act 2022</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section" id="changes">
+      <span class="sec-num">15</span>
+      <h2>CHANGES TO THESE TERMS</h2>
+      <p>We may update these Terms from time to time. For material changes, we will notify you via email or a prominent in-app notice at least 14 days before the changes take effect. Continued use after the effective date constitutes acceptance of the revised Terms.</p>
+      <p>If you do not agree to the revised Terms, you must stop using the Platform and close your account before the effective date.</p>
+    </section>
+
+    <section class="section" id="contact">
+      <span class="sec-num">16</span>
+      <h2>CONTACT &amp; LEGAL NOTICES</h2>
+      <p>For questions about these Terms, contact our legal team:</p>
+      <div class="contact-box">
+        <div class="contact-item"><span class="label">Legal email</span><a href="mailto:legal@growiq.co">legal@growiq.co</a></div>
+        <div class="contact-item"><span class="label">Support</span><a href="mailto:support@growiq.co">support@growiq.co</a></div>
+        <div class="contact-item"><span class="label">Company</span><span>YoungMerit (Pty) Ltd</span></div>
+        <div class="contact-item"><span class="label">Registered address</span><span>South Africa <em style="color:var(--stone)">(full address TBC)</em></span></div>
+      </div>
+    </section>
+
+    <div class="disclaimer">
+      <strong>Note:</strong> These Terms of Service were drafted in June 2025 and have not yet been reviewed by a licensed attorney. Before making this Platform publicly accessible, obtain formal legal review from a qualified lawyer in each jurisdiction where you operate.
+    </div>
+
+  </main>
+</div>
+
+<div class="policy-footer">
+  <a href="index.html" class="pf-logo">Young<span>Merit</span></a>
+  <div class="pf-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="cookies.html">Cookie Settings</a>
+    <a href="identity-verification.html">Identity Verification</a>
+    <a href="dispute-system.html">Dispute System</a>
+  </div>
+  <div class="pf-copy">Copyright 2026 YoungMerit. All rights reserved.</div>
+</div>
+
+<script>
+function toggleMenu(){document.getElementById('sideMenu').classList.toggle('open');document.getElementById('overlay').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');}
+function closeMenu(){document.getElementById('sideMenu').classList.remove('open');document.getElementById('overlay').classList.remove('open');document.getElementById('hamburger').classList.remove('open');}
+// Highlight active TOC on scroll
+const sections=document.querySelectorAll('.section[id]');
+const tocLinks=document.querySelectorAll('.toc-list a');
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){tocLinks.forEach(l=>l.classList.remove('active'));const a=document.querySelector(`.toc-list a[href="#${e.target.id}"]`);if(a)a.classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+sections.forEach(s=>obs.observe(s));
+</script>
+<script>
+// ── AUTH NAV SWAP ──
+
+</script>
+<script src="I18n.js"></script>
+</body>
+</html>

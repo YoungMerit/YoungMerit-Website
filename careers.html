@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Careers — YoungMerit</title>
+<meta name="description" content="Join the team building Africa's youth employment infrastructure."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--cream:#F5F0E8;--dark:#1A1208;--brown:#3D2B0F;--amber:#C4861A;--amber-light:#E8A83A;--stone:#8A7560;--stone-light:#D4C9B8;--white:#FDFAF5;--card:#EDE8DE;--green:#3A6B3A;--green-light:#E8F0E8;}
+
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}}
+body{background:var(--cream);color:var(--dark);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#0E0906;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;padding:0 32px;height:64px;gap:20px;}
+.hamburger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;z-index:1100;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--cream);transition:all 0.3s;transform-origin:center;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.logo{font-family:'Archivo Black',sans-serif;font-size:26px;letter-spacing:2px;color:var(--cream);text-decoration:none;flex-shrink:0;}
+.logo span{color:var(--cream);}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
+.nav-link{color:rgba(253,250,245,0.5);text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:6px;transition:all 0.2s;}
+.nav-link:hover{background:rgba(255,255,255,0.07);color:var(--cream);}
+.btn-primary{background:var(--amber);color:var(--dark);border:none;padding:9px 20px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s;}
+.btn-primary:hover{background:var(--amber-light);}
+.overlay{position:fixed;inset:0;background:rgba(26,18,8,0.4);z-index:1040;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.overlay.open{opacity:1;pointer-events:all;}
+.side-menu{position:fixed;top:0;left:0;width:280px;height:100vh;background:var(--white);border-right:1.5px solid var(--stone-light);z-index:1050;transform:translateX(-100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);padding-top:80px;display:flex;flex-direction:column;}
+.side-menu.open{transform:translateX(0);}
+.menu-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--stone);padding:20px 28px 8px;}
+.menu-item{display:flex;align-items:center;gap:12px;padding:13px 28px;text-decoration:none;color:var(--dark);font-weight:500;font-size:15px;border-left:3px solid transparent;transition:all 0.2s;}
+.menu-item:hover{background:var(--card);border-left-color:var(--amber);color:var(--brown);}
+.menu-icon{width:18px;height:18px;flex-shrink:0;}
+.menu-bottom{margin-top:auto;padding:20px 28px;border-top:1px solid var(--stone-light);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.anim-1{animation:fadeUp 0.6s ease 0.1s both;}.anim-2{animation:fadeUp 0.6s ease 0.25s both;}.anim-3{animation:fadeUp 0.6s ease 0.4s both;}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.55s ease,transform 0.55s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+.hero{background:#0E0906;padding:120px 48px 80px;position:relative;overflow:hidden;}
+.hero::before{content:'CAREERS';position:absolute;bottom:-40px;right:-20px;font-family:'Archivo Black',sans-serif;font-size:260px;color:rgba(255,255,255,0.02);letter-spacing:8px;pointer-events:none;white-space:nowrap;line-height:1;}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.breadcrumb{font-size:12px;color:var(--stone);margin-bottom:22px;display:flex;align-items:center;gap:6px;}
+.breadcrumb a{color:var(--stone);text-decoration:none;}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:14px;display:block;}
+.hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(56px,6vw,90px);line-height:0.92;color:var(--cream);margin-bottom:20px;letter-spacing:1px;}
+.hero h1 .accent{color:var(--amber);}
+.hero-desc{font-size:17px;color:var(--stone);line-height:1.75;margin-bottom:32px;font-weight:300;}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.06);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);}
+.hstat{padding:24px;background:#0E0906;}
+.hstat-num{font-family:'Archivo Black',sans-serif;font-size:40px;color:var(--amber);line-height:1;margin-bottom:4px;}
+.hstat-lbl{font-size:12px;color:var(--stone);}
+
+.section{padding:80px 48px;}
+.section-inner{max-width:1200px;margin:0 auto;}
+.sec-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:14px;display:block;}
+.sec-title{font-family:'Archivo Black',sans-serif;font-size:56px;color:var(--dark);letter-spacing:1px;line-height:0.95;margin-bottom:16px;}
+.sec-title .accent{color:var(--amber);}
+.sec-sub{font-size:15px;color:var(--stone);max-width:500px;line-height:1.75;margin-bottom:48px;}
+
+/* VALUES */
+.values-sec{background:var(--dark);}
+.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.val-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px;transition:all 0.22s;}
+.val-card:hover{background:rgba(255,255,255,0.07);border-color:var(--amber);transform:translateY(-3px);}
+.val-icon{font-size:28px;margin-bottom:14px;}
+.val-title{font-family:'Archivo Black',sans-serif;font-size:20px;color:var(--amber);letter-spacing:1px;margin-bottom:8px;}
+.val-desc{font-size:13px;color:var(--stone);line-height:1.7;}
+
+/* NO ROLES */
+.roles-sec{background:var(--card);}
+.no-roles{background:var(--white);border:1.5px solid var(--stone-light);border-radius:20px;padding:60px;text-align:center;}
+.no-roles-icon{font-size:48px;margin-bottom:20px;}
+.no-roles h3{font-family:'Archivo Black',sans-serif;font-size:32px;color:var(--dark);letter-spacing:1px;margin-bottom:10px;}
+.no-roles p{font-size:15px;color:var(--stone);max-width:440px;margin:0 auto 28px;line-height:1.75;}
+.notify-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.notify-input{background:var(--cream);border:1.5px solid var(--stone-light);color:var(--dark);font-family:'DM Sans',sans-serif;font-size:14px;padding:11px 16px;border-radius:8px;width:260px;outline:none;transition:border-color 0.2s;}
+.notify-input:focus{border-color:var(--amber);}
+.notify-input::placeholder{color:var(--stone);}
+.btn-amber{background:var(--amber);color:var(--dark);font-weight:600;padding:11px 24px;border-radius:8px;border:none;font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
+.btn-amber:hover{background:var(--amber-light);transform:translateY(-1px);}
+.success-msg{display:none;color:var(--green);font-size:14px;font-weight:500;margin-top:14px;align-items:center;gap:6px;}
+.success-msg.show{display:flex;justify-content:center;}
+
+/* PERKS */
+.perks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.perk{background:var(--white);border:1.5px solid var(--stone-light);border-radius:14px;padding:24px;transition:all 0.22s;}
+.perk:hover{border-color:var(--amber);transform:translateY(-3px);box-shadow:0 8px 28px rgba(61,43,15,0.09);}
+.perk-head{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.perk-icon{width:40px;height:40px;border-radius:12px;background:var(--card);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.perk-title{font-size:14px;font-weight:600;color:var(--dark);}
+.perk p{font-size:13px;color:var(--stone);line-height:1.65;}
+
+footer{background:#0E0906;border-top:1px solid rgba(255,255,255,0.07);padding:60px 48px 32px;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:240px 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+.footer-brand .logo{font-size:28px;display:block;margin-bottom:12px;}
+.footer-brand p{font-size:13px;color:var(--stone);line-height:1.7;}
+.footer-col h5{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--stone);margin-bottom:16px;}
+.footer-col a{display:block;font-size:14px;color:rgba(253,250,245,0.75);text-decoration:none;margin-bottom:10px;transition:color 0.2s;}
+.footer-col a:hover{color:var(--amber);}
+.footer-col a.active-link{color:var(--amber);font-weight:600;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid rgba(255,255,255,0.08);font-size:12px;color:var(--stone);flex-wrap:wrap;gap:12px;}
+.flag-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:20px;border-radius:4px;background:rgba(255,255,255,0.1);color:rgba(253,250,245,0.7);font-size:9px;font-weight:800;letter-spacing:0.5px;font-family:'DM Sans',sans-serif;}
+.footer-flags{display:flex;gap:6px;align-items:center;}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr;}.values-grid{grid-template-columns:1fr 1fr;}.perks-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:640px){.hero{padding:100px 20px 60px;}.section{padding:60px 20px;}.footer-top{grid-template-columns:1fr 1fr;gap:24px;}.nav-link{display:none;}.perks-grid{grid-template-columns:1fr;}.values-grid{grid-template-columns:1fr 1fr;}}
+
+/* ── AUTH NAV ── */
+.nav-profile-btn{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--dark);font-size:14px;font-weight:600;padding:5px 12px 5px 5px;border-radius:8px;border:1.5px solid var(--stone-light);transition:all 0.2s;background:var(--white);}
+.nav-profile-btn:hover{border-color:var(--amber);background:var(--cream);}
+.nav-avatar{width:30px;height:30px;border-radius:50%;background:var(--amber);color:var(--dark);font-family:'Archivo Black',sans-serif;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-profile-name{max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.nav-logout{color:var(--stone)!important;font-size:13px!important;}
+/* dark nav variant (index hero) */
+nav .nav-profile-btn{background:rgba(255,255,255,0.07)!important;border-color:rgba(255,255,255,0.12)!important;color:var(--cream)!important;}
+nav .nav-profile-btn:hover{border-color:var(--amber)!important;background:rgba(255,255,255,0.12)!important;}
+nav .nav-avatar{background:var(--amber)!important;color:var(--dark)!important;}
+nav .nav-profile-name{color:var(--cream)!important;}
+nav .nav-logout{color:rgba(253,250,245,0.5)!important;}
+
+</style>
+<style>
+.footer-brand p,.footer-col h5,.footer-bottom > span{color:#D8D0A8!important;}
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<aside class="side-menu" id="sideMenu">
+  <span class="menu-label">Navigation</span>
+  <a href="index.html" class="menu-item">
+    <span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span data-i18n="nav.home">Home</span></a>
+  <a href="find-work.html" class="menu-item">
+    <span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><span data-i18n="nav.findWork">Find Work</span></a>
+  <a href="hire-talent.html" class="menu-item">
+    <span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span data-i18n="nav.hireTalent">Hire Talent</span></a>
+  <a href="how-it-works.html" class="menu-item">
+    <span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></span><span data-i18n="nav.howItWorks">How It Works</span></a>
+  <a href="about.html" class="menu-item">
+    <span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span><span data-i18n="nav.about">About</span></a>
+  <a href="pricing.html" class="menu-item"><span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><span data-i18n="nav.pricing">Pricing</span></a>
+  <div class="menu-bottom">
+    <a href="auth.html" class="btn-primary" style="width:100%;text-align:center;display:block;" id="menuCta" data-i18n="nav.signUpFree">Sign Up Free</a>
+  </div>
+</aside>
+
+<nav>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <a href="index.html" class="logo">Young<span>Merit</span></a>
+  <div class="nav-end"><div class="nav-lang-mount"></div><div class="nav-right"><a href="auth.html" class="nav-link" data-i18n="nav.logIn">Log In</a><a href="auth.html" class="btn-primary" data-i18n="nav.signUp">Sign Up</a></div>
+</div></nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="breadcrumb anim-1"><a href="index.html" data-i18n="nav.home">Home</a><span style="color:rgba(255,255,255,0.15);">›</span><span data-i18n="careers.hero.breadcrumb">Careers</span></div>
+      <span class="eyebrow anim-1" data-i18n="careers.hero.eyebrow">Join the Team</span>
+      <h1 class="anim-2" data-i18n="careers.hero.title" data-i18n-html>BUILD THE FUTURE OF<br/><span class="accent">AFRICAN WORK.</span></h1>
+      <p class="hero-desc anim-3" data-i18n="careers.hero.desc">We are a small team with outsized ambition &mdash; connecting millions of young people to real economic opportunity across six countries. Come help us build it.</p>
+    </div>
+    <div class="hero-stats anim-3">
+      <div class="hstat"><div class="hstat-num">6</div><div class="hstat-lbl" data-i18n="careers.stats.countries">Countries active</div></div>
+      <div class="hstat"><div class="hstat-num">~15</div><div class="hstat-lbl" data-i18n="careers.stats.team">Team size</div></div>
+      <div class="hstat"><div class="hstat-num">100%</div><div class="hstat-lbl" data-i18n="careers.stats.remote">Remote-first</div></div>
+      <div class="hstat"><div class="hstat-num">Early</div><div class="hstat-lbl" data-i18n="careers.stats.ownership">Real ownership</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section values-sec">
+  <div class="section-inner">
+    <span class="sec-eyebrow reveal" data-i18n="careers.values.eyebrow">How we work</span>
+    <h2 class="sec-title reveal" data-i18n="careers.values.title" data-i18n-html>HOW WE <span class="accent">OPERATE.</span></h2>
+    <div class="values-grid">
+      <div class="val-card reveal"><div class="val-icon">🌍</div><div class="val-title" data-i18n="careers.values.1.title">Africa-first thinking</div><p class="val-desc" data-i18n="careers.values.1.desc">We build for real conditions &mdash; variable connectivity, mobile-first users, and diverse regulatory landscapes across 6 countries.</p></div>
+      <div class="val-card reveal"><div class="val-icon">🏗️</div><div class="val-title" data-i18n="careers.values.2.title">Builders, not bureaucrats</div><p class="val-desc" data-i18n="careers.values.2.desc">Small team, big scope. Everyone ships. No layers of approval between an idea and the user.</p></div>
+      <div class="val-card reveal"><div class="val-icon">⚖️</div><div class="val-title" data-i18n="careers.values.3.title">Trust as a product</div><p class="val-desc" data-i18n="careers.values.3.desc">We're building trust infrastructure. That means we hold ourselves to unusually high standards on security, privacy, and fairness.</p></div>
+      <div class="val-card reveal"><div class="val-icon">📈</div><div class="val-title" data-i18n="careers.values.4.title">Ownership mindset</div><p class="val-desc" data-i18n="careers.values.4.desc">Early-stage means your decisions genuinely shape the company. We share equity meaningfully, not symbolically.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- OPEN ROLES -->
+<section class="section roles-sec">
+  <div class="section-inner">
+    <span class="sec-eyebrow reveal" data-i18n="careers.roles.eyebrow">Open Roles</span>
+    <h2 class="sec-title reveal" data-i18n="careers.roles.title" data-i18n-html>CURRENT <span class="accent">OPENINGS.</span></h2>
+    <div class="no-roles reveal">
+      <div class="no-roles-icon">📭</div>
+      <h3 data-i18n="careers.roles.empty.title">NO OPEN ROLES RIGHT NOW</h3>
+      <p data-i18n="careers.roles.empty.desc">We are heads-down building. When we are ready to grow the team, we will post here first &mdash; and email everyone who signs up below.</p>
+      <div class="notify-row">
+        <input type="email" class="notify-input" id="notify-email" placeholder="your@email.com"/>
+        <button class="btn-amber" onclick="notifyMe()" data-i18n="careers.roles.notify">Notify me</button>
+      </div>
+      <div class="success-msg" id="notify-success"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="careers.roles.success">You are on the list. We will be in touch.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PERKS -->
+<section class="section" style="background:var(--cream);">
+  <div class="section-inner">
+    <span class="sec-eyebrow reveal" data-i18n="careers.perks.eyebrow">What We Offer</span>
+    <h2 class="sec-title reveal" data-i18n="careers.perks.title" data-i18n-html>WHAT YOU <span class="accent">GET.</span></h2>
+    <div class="perks-grid">
+      <div class="perk reveal">
+        <div class="perk-head"><div class="perk-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span class="perk-title" data-i18n="careers.perks.1.title">Remote-first, async-friendly</span></div>
+        <p data-i18n="careers.perks.1.desc">Work from anywhere in Africa &mdash; or beyond where legal. We trust you to manage your time.</p>
+      </div>
+      <div class="perk reveal">
+        <div class="perk-head"><div class="perk-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><span class="perk-title" data-i18n="careers.perks.2.title">Meaningful equity</span></div>
+        <p data-i18n="careers.perks.2.desc">Real ownership, vested over 4 years with a 1-year cliff. Not symbolic &mdash; structural.</p>
+      </div>
+      <div class="perk reveal">
+        <div class="perk-head"><div class="perk-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><span class="perk-title" data-i18n="careers.perks.3.title">Learning budget</span></div>
+        <p data-i18n="careers.perks.3.desc">R12,000 per year for courses, books, or conferences &mdash; use it how it helps you most.</p>
+      </div>
+      <div class="perk reveal">
+        <div class="perk-head"><div class="perk-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><span class="perk-title" data-i18n="careers.perks.4.title">Home office budget</span></div>
+        <p data-i18n="careers.perks.4.desc">Equipment allowance to build the workspace you need from day one.</p>
+      </div>
+      <div class="perk reveal">
+        <div class="perk-head"><div class="perk-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><span class="perk-title" data-i18n="careers.perks.5.title">Impact that is real</span></div>
+        <p data-i18n="careers.perks.5.desc">Every product decision affects real young people and their economic futures &mdash; not vanity metrics.</p>
+      </div>
+      <div class="perk reveal">
+        <div class="perk-head"><div class="perk-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span class="perk-title" data-i18n="careers.perks.6.title">Small team advantage</span></div>
+        <p data-i18n="careers.perks.6.desc">Direct access to founders, no middle management, real autonomy from week one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Young<span>Merit</span></a>
+        <p data-i18n="footer.tagline">We are on a mission to create a world where opportunity is earned, not given.</p>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer.platform">Platform</h5>
+        <a href="find-work.html" data-i18n="footer.findWork">Find Work</a>
+        <a href="hire-talent.html" data-i18n="footer.hireTalent">Hire Talent</a>
+        <a href="how-it-works.html" data-i18n="footer.howItWorks">How It Works</a>
+        <a href="resources.html" data-i18n="footer.resources">Resources</a>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer.company">Company</h5>
+        <a href="about.html" data-i18n="footer.aboutYOUNGMERIT">About Us</a>
+        <a href="careers.html" data-i18n="footer.careers">Careers</a>
+        <a href="community.html" data-i18n="footer.community">Community</a>
+        <a href="contact.html" data-i18n="footer.contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer.trustSafety">Trust &amp; Safety</h5>
+        <a href="identity-verification.html" data-i18n="footer.identityVerification">Identity Verification</a>
+        <a href="dispute-system.html" data-i18n="footer.disputeSystem">Dispute System</a>
+        <a href="privacy-policy.html" data-i18n="footer.privacyPolicy">Privacy Policy</a>
+        <a href="terms.html" data-i18n="footer.termsOfService">Terms of Service</a>
+        <a href="cookies.html" data-i18n="footer.cookieSettings">Cookie Settings</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.copyright">Copyright 2026 YOUNGMERIT. All rights reserved.</span>
+      <div class="footer-flags"><span class="flag-badge">ZA</span><span class="flag-badge">ES</span><span class="flag-badge">FR</span><span class="flag-badge">GB</span><span class="flag-badge">CN</span><span class="flag-badge">US</span></div>
+      <span data-i18n="footer.builtFor">Built for youth. Trusted by business.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('sideMenu').classList.toggle('open');document.getElementById('overlay').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');}
+function closeMenu(){document.getElementById('sideMenu').classList.remove('open');document.getElementById('overlay').classList.remove('open');document.getElementById('hamburger').classList.remove('open');}
+function notifyMe(){const v=document.getElementById('notify-email').value.trim();if(!v||!v.includes('@')){document.getElementById('notify-email').focus();return;}document.getElementById('notify-success').classList.add('show');document.getElementById('notify-email').disabled=true;}
+var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
+</script>
+<script>
+// ── AUTH NAV SWAP ──
+
+</script>
+<script src="I18n.js"></script>
+</body>
+</html>

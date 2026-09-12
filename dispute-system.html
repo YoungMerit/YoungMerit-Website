@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dispute System — YoungMerit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--cream:#F5F0E8;--dark:#1A1208;--brown:#3D2B0F;--amber:#C4861A;--amber-light:#E8A83A;--stone:#8A7560;--stone-light:#D4C9B8;--white:#FDFAF5;--card:#EDE8DE;--green:#3A6B3A;--green-light:#E8F0E8;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--cream);color:var(--dark);font-family:'DM Sans',sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#0E0906;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;padding:0 32px;height:64px;gap:20px;}
+.hamburger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--cream);transition:all 0.3s;transform-origin:center;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.logo{font-family:'Archivo Black',sans-serif;font-size:26px;letter-spacing:2px;color:var(--cream);text-decoration:none;flex-shrink:0;}
+.logo span{color:var(--cream);}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
+.nav-link{color:rgba(253,250,245,0.5);text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:6px;transition:all 0.2s;}
+.nav-link:hover{color:var(--cream);}
+.btn-primary{background:var(--amber);color:var(--dark);border:none;padding:9px 20px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s;}
+.btn-primary:hover{background:var(--amber-light);}
+.overlay{position:fixed;inset:0;background:rgba(26,18,8,0.4);z-index:1040;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.overlay.open{opacity:1;pointer-events:all;}
+.side-menu{position:fixed;top:0;left:0;width:280px;height:100vh;background:var(--white);border-right:1.5px solid var(--stone-light);z-index:1050;transform:translateX(-100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);padding-top:80px;display:flex;flex-direction:column;}
+.side-menu.open{transform:translateX(0);}
+.menu-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--stone);padding:20px 28px 8px;}
+.menu-item{display:flex;align-items:center;gap:12px;padding:13px 28px;text-decoration:none;color:var(--dark);font-weight:500;font-size:15px;border-left:3px solid transparent;transition:all 0.2s;}
+.menu-item:hover,.menu-item.active{background:var(--card);border-left-color:var(--amber);color:var(--brown);}
+.menu-icon{width:18px;height:18px;flex-shrink:0;}
+.menu-bottom{margin-top:auto;padding:20px 28px;border-top:1px solid var(--stone-light);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.anim-1{animation:fadeUp 0.6s ease 0.1s both;}.anim-2{animation:fadeUp 0.6s ease 0.25s both;}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.55s ease,transform 0.55s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+.hero{background:#0E0906;padding:120px 48px 80px;position:relative;overflow:hidden;margin-top:64px;}
+.hero::before{content:'DISPUTES';position:absolute;bottom:-40px;right:-20px;font-family:'Archivo Black',sans-serif;font-size:220px;color:rgba(255,255,255,0.02);letter-spacing:8px;pointer-events:none;white-space:nowrap;line-height:1;}
+.hero-inner{max-width:1200px;margin:0 auto;}
+.breadcrumb{font-size:12px;color:var(--stone);margin-bottom:22px;display:flex;align-items:center;gap:6px;}
+.breadcrumb a{color:var(--stone);text-decoration:none;}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:14px;display:block;}
+.hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(48px,6vw,80px);line-height:0.92;color:var(--cream);margin-bottom:18px;letter-spacing:1px;}
+.hero h1 .accent{color:var(--amber);}
+.hero p{font-size:16px;color:var(--stone);max-width:560px;line-height:1.75;font-weight:300;}
+
+.page-body{max-width:900px;margin:0 auto;padding:64px 48px 100px;}
+
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:52px;}
+.how-card{background:var(--white);border:1.5px solid var(--stone-light);border-radius:14px;padding:24px;}
+.how-num{font-family:'Archivo Black',sans-serif;font-size:36px;color:var(--amber);line-height:1;margin-bottom:10px;}
+.how-card h3{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:6px;}
+.how-card p{font-size:13px;color:var(--stone);line-height:1.65;}
+
+.sec-title{font-family:'Archivo Black',sans-serif;font-size:32px;color:var(--dark);letter-spacing:1px;margin-bottom:16px;}
+.sec-title .accent{color:var(--amber);}
+.body-text{font-size:14px;color:var(--stone);line-height:1.8;margin-bottom:14px;}
+.outcome-row{display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--white);border:1.5px solid var(--stone-light);border-radius:10px;margin-bottom:10px;}
+.outcome-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.outcome-icon.green{background:var(--green-light);}
+.outcome-icon.amber{background:rgba(196,134,26,0.1);}
+.outcome-body h4{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:3px;}
+.outcome-body p{font-size:13px;color:var(--stone);line-height:1.6;}
+
+.cta-strip{background:var(--dark);border-radius:16px;padding:40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:48px;}
+.cta-strip h3{font-family:'Archivo Black',sans-serif;font-size:28px;color:var(--cream);letter-spacing:1px;margin-bottom:6px;}
+.cta-strip p{font-size:14px;color:var(--stone);max-width:400px;line-height:1.6;}
+.btn-amber-lg{background:var(--amber);color:var(--dark);font-weight:700;padding:13px 28px;border-radius:8px;border:none;font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;white-space:nowrap;transition:all 0.2s;display:inline-block;}
+.btn-amber-lg:hover{background:var(--amber-light);transform:translateY(-1px);}
+
+footer{background:#0E0906;border-top:1px solid rgba(255,255,255,0.07);padding:60px 48px 32px;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:240px 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+.footer-brand .logo{font-size:28px;display:block;margin-bottom:12px;font-family:'Archivo Black',sans-serif;letter-spacing:2px;text-decoration:none;color:var(--dark);}
+.footer-brand p{font-size:13px;color:var(--stone);line-height:1.7;}
+.footer-col h5{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--stone);margin-bottom:16px;}
+.footer-col a{display:block;font-size:14px;color:rgba(253,250,245,0.75);text-decoration:none;margin-bottom:10px;transition:color 0.2s;}
+.footer-col a:hover{color:var(--amber);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid rgba(255,255,255,0.08);font-size:12px;color:var(--stone);flex-wrap:wrap;gap:12px;}
+.flag-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:20px;border-radius:4px;background:rgba(255,255,255,0.1);color:rgba(253,250,245,0.7);font-size:9px;font-weight:800;letter-spacing:0.5px;font-family:'DM Sans',sans-serif;}
+.footer-flags{display:flex;gap:6px;align-items:center;}
+@media(max-width:768px){.how-grid{grid-template-columns:1fr;}.hero{padding:100px 20px 60px;}.page-body{padding:40px 20px 60px;}.footer-top{grid-template-columns:1fr 1fr;gap:24px;}.nav-link{display:none;}.cta-strip{flex-direction:column;}}
+</style>
+<style>
+.policy-footer{background:#0E0906;padding:48px;margin-top:80px;text-align:center;}
+.pf-logo{font-family:'Archivo Black',sans-serif;font-size:28px;color:var(--cream);letter-spacing:2px;text-decoration:none;display:inline-block;margin-bottom:14px;}
+.pf-logo span{color:var(--cream);}
+.pf-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;}
+.pf-links a{font-size:13px;color:rgba(253,250,245,0.4);text-decoration:none;transition:color 0.2s;}
+.pf-links a:hover{color:var(--cream);}
+.pf-copy{font-size:12px;color:rgba(253,250,245,0.2);}
+</style>
+</head>
+<body>
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<aside class="side-menu" id="sideMenu">
+  <span class="menu-label">Navigation</span>
+  <a href="index.html" class="menu-item"><span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>Home</a>
+  <a href="find-work.html" class="menu-item"><span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>Find Work</a>
+  <a href="hire-talent.html" class="menu-item"><span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Hire Talent</a>
+  <a href="how-it-works.html" class="menu-item"><span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></span>How It Works</a>
+  <a href="about.html" class="menu-item"><span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>About</a>
+  <a href="pricing.html" class="menu-item"><span class="menu-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><span data-i18n="nav.pricing">Pricing</span></a>
+  <div class="menu-bottom">
+    <a href="auth.html" class="btn-primary" style="width:100%;text-align:center;display:block;" id="menuCta">Sign Up Free</a>
+  </div>
+</aside>
+
+<nav>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <a href="index.html" class="logo">Young<span>Merit</span></a>
+  <div class="nav-end"><div class="nav-lang-mount"></div><div class="nav-right" id="navRight">
+    <a href="auth.html" class="nav-link">Log In</a>
+    <a href="auth.html" class="btn-primary">Sign Up</a>
+  </div>
+</div></nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb anim-1"><a href="index.html">Home</a><span style="color:rgba(255,255,255,0.15);">›</span><span>Dispute System</span></div>
+    <span class="eyebrow anim-1">Trust &amp; Safety</span>
+    <h1 class="anim-2">DISPUTE<br/><span class="accent">SYSTEM.</span></h1>
+    <p class="anim-2">When something goes wrong, we step in. Our mediation process is fair, fast, and binding within the platform, protecting both workers and businesses.</p>
+  </div>
+</section>
+
+<div class="page-body">
+
+  <div class="notice-legal-bar" style="background:rgba(196,134,26,0.08);border:1px solid rgba(196,134,26,0.25);border-radius:10px;padding:14px 20px;font-size:13px;color:var(--stone);line-height:1.6;margin-bottom:20px;" data-i18n="legal.englishOnlyNotice" data-i18n-html>This document is provided in English only. If you have questions, please <a href="contact.html" style="color:inherit;text-decoration:underline;">contact our support team</a> in your preferred language.</div>
+
+  <div class="how-grid">
+    <div class="how-card reveal">
+      <div class="how-num">01</div>
+      <h3>Raise a dispute</h3>
+      <p>Either party can open a dispute within 7 days of the task's marked completion date from their profile.</p>
+    </div>
+    <div class="how-card reveal">
+      <div class="how-num">02</div>
+      <h3>Submit evidence</h3>
+      <p>Both sides submit messages, deliverables, and task descriptions. Our team reviews everything submitted.</p>
+    </div>
+    <div class="how-card reveal">
+      <div class="how-num">03</div>
+      <h3>Decision in 3 days</h3>
+      <p>We aim to respond within 3 business days. Our decision determines how the escrowed funds are released.</p>
+    </div>
+  </div>
+
+  <h2 class="sec-title reveal">POSSIBLE <span class="accent">OUTCOMES.</span></h2>
+  <div class="outcome-row reveal">
+    <div class="outcome-icon green">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div class="outcome-body">
+      <h4>Worker wins</h4>
+      <p>Escrowed funds are released in full to the worker's wallet immediately.</p>
+    </div>
+  </div>
+  <div class="outcome-row reveal">
+    <div class="outcome-icon amber">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div class="outcome-body">
+      <h4>Business wins</h4>
+      <p>Escrowed funds are returned to the business wallet in full.</p>
+    </div>
+  </div>
+  <div class="outcome-row reveal">
+    <div class="outcome-icon amber">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </div>
+    <div class="outcome-body">
+      <h4>Partial resolution</h4>
+      <p>Funds are split between both parties based on the mediator's determination of work completed.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:40px;">
+    <h2 class="sec-title reveal">IMPORTANT <span class="accent">RULES.</span></h2>
+    <p class="body-text reveal">Disputes must be raised within <strong>7 days</strong> of the task's completion date. After this window, escrowed funds are automatically released to the worker.</p>
+    <p class="body-text reveal">Our mediation decision is binding within the platform and determines how funds are released. It is not a legal ruling and does not affect your right to pursue the matter through the courts or a relevant consumer protection body.</p>
+    <p class="body-text reveal">Attempting to raise fraudulent disputes or submitting false evidence is grounds for immediate account termination.</p>
+  </div>
+
+  <div class="cta-strip reveal">
+    <div>
+      <h3>NEED TO RAISE A DISPUTE?</h3>
+      <p>Log in and go to the relevant task in your profile to open a dispute. You need an active account and a task in progress or recently completed.</p>
+    </div>
+    <a href="profile.html" class="btn-amber-lg">Go to My Profile</a>
+  </div>
+
+</div>
+
+<div class="policy-footer">
+  <a href="index.html" class="pf-logo">Young<span>Merit</span></a>
+  <div class="pf-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="cookies.html">Cookie Settings</a>
+    <a href="identity-verification.html">Identity Verification</a>
+    <a href="dispute-system.html">Dispute System</a>
+  </div>
+  <div class="pf-copy">Copyright 2026 YOUNGMERIT. All rights reserved.</div>
+</div>
+
+<script>
+function toggleMenu(){document.getElementById('sideMenu').classList.toggle('open');document.getElementById('overlay').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');}
+function closeMenu(){['sideMenu','overlay','hamburger'].forEach(function(id){document.getElementById(id).classList.remove('open');});}
+(function(){
+  var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
+})();
+</script>
+<script src="I18n.js"></script>
+</body>
+</html>

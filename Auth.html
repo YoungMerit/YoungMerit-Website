@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sign Up / Log In — GROWIQ.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--cream:#F5F0E8;--dark:#1A1208;--brown:#3D2B0F;--amber:#C4861A;--amber-light:#E8A83A;--stone:#8A7560;--stone-light:#D4C9B8;--white:#FDFAF5;--card:#EDE8DE;--green:#3A6B3A;--green-light:#E8F0E8;--red:#C0392B;--red-light:#FDECEA;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--dark);color:var(--cream);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(14,9,6,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;padding:0 32px;height:64px;}
+.logo{font-family:'Archivo Black',sans-serif;font-size:26px;letter-spacing:2px;color:var(--cream);text-decoration:none;}
+.logo span{color:var(--amber);}
+.nav-back{margin-left:auto;color:rgba(253,250,245,0.5);text-decoration:none;font-size:14px;display:flex;align-items:center;gap:6px;transition:color 0.2s;}
+.nav-back:hover{color:var(--cream);}
+.auth-wrap{flex:1;display:grid;grid-template-columns:1fr 1fr;min-height:100vh;padding-top:64px;}
+/* LEFT */
+.auth-left{background:#0E0906;display:flex;flex-direction:column;justify-content:center;padding:80px 64px;position:relative;overflow:hidden;}
+.auth-left::before{content:'JOIN';position:absolute;bottom:-60px;left:-20px;font-family:'Archivo Black',sans-serif;font-size:280px;color:rgba(255,255,255,0.015);line-height:1;pointer-events:none;}
+.auth-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:16px;}
+.auth-heading{font-family:'Archivo Black',sans-serif;font-size:clamp(48px,5vw,72px);line-height:0.92;letter-spacing:1px;margin-bottom:20px;}
+.auth-heading .accent{color:var(--amber);}
+.auth-desc{font-size:15px;color:var(--stone);line-height:1.75;max-width:380px;margin-bottom:48px;font-weight:300;}
+.trust-row{display:flex;flex-direction:column;gap:14px;}
+.trust-item{display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(253,250,245,0.6);}
+.trust-icon{width:36px;height:36px;border-radius:10px;background:rgba(196,134,26,0.1);border:1px solid rgba(196,134,26,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+/* RIGHT */
+.auth-right{background:var(--cream);display:flex;align-items:center;justify-content:center;padding:60px 48px;}
+.auth-card{width:100%;max-width:420px;}
+/* MODE TOGGLE */
+.mode-toggle{display:flex;background:var(--card);border-radius:10px;padding:4px;margin-bottom:28px;border:1.5px solid var(--stone-light);}
+.mode-btn{flex:1;padding:10px;border-radius:7px;border:none;background:transparent;color:var(--stone);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:all 0.2s;text-align:center;}
+.mode-btn.active{background:var(--dark);color:var(--cream);font-weight:600;}
+/* TYPE CARDS */
+.type-select{margin-bottom:22px;}
+.type-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--stone);margin-bottom:10px;display:block;}
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.type-card{border:2px solid var(--stone-light);border-radius:12px;padding:16px;cursor:pointer;transition:all 0.2s;background:var(--white);text-align:left;}
+.type-card:hover{border-color:var(--amber);}
+.type-card.selected{border-color:var(--amber);background:rgba(196,134,26,0.05);}
+.type-card-icon{width:36px;height:36px;border-radius:10px;background:var(--card);display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.type-card h4{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:3px;}
+.type-card p{font-size:12px;color:var(--stone);line-height:1.4;}
+.type-check{display:none;width:16px;height:16px;border-radius:50%;background:var(--amber);align-items:center;justify-content:center;float:right;margin-top:-28px;}
+.type-card.selected .type-check{display:flex;}
+/* FORM */
+.form-section{display:none;}
+.form-section.show{display:block;}
+.form-title{font-family:'Archivo Black',sans-serif;font-size:28px;color:var(--dark);letter-spacing:1px;margin-bottom:4px;}
+.form-sub{font-size:13px;color:var(--stone);margin-bottom:22px;}
+.field{margin-bottom:15px;}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--brown);margin-bottom:6px;letter-spacing:0.3px;}
+.field input{width:100%;background:var(--white);border:1.5px solid var(--stone-light);color:var(--dark);font-family:'DM Sans',sans-serif;font-size:14px;padding:11px 14px;border-radius:8px;outline:none;transition:border-color 0.2s;}
+.field input:focus{border-color:var(--amber);}
+.field input::placeholder{color:var(--stone-light);}
+.field input.err-input{border-color:var(--red);}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.field-err{font-size:11px;color:var(--red);margin-top:4px;display:none;}
+.field-err.show{display:block;}
+/* PASSWORD TOGGLE */
+.pw-wrap{position:relative;}
+.pw-wrap input{padding-right:42px;}
+.pw-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--stone);display:flex;align-items:center;padding:2px;}
+.pw-eye:hover{color:var(--dark);}
+/* STRENGTH BAR */
+.pw-strength{margin-top:6px;display:none;}
+.pw-strength.show{display:block;}
+.pw-bar{height:4px;border-radius:2px;background:var(--stone-light);overflow:hidden;margin-bottom:3px;}
+.pw-bar-fill{height:100%;border-radius:2px;transition:all 0.3s;}
+.pw-hint{font-size:11px;color:var(--stone);}
+/* SUBMIT */
+.submit-btn{width:100%;background:var(--dark);color:var(--cream);border:none;padding:14px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.2s;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.submit-btn:hover{background:var(--brown);}
+.submit-btn:disabled{opacity:0.5;cursor:not-allowed;}
+/* FORGOT */
+.forgot-link{font-size:12px;color:var(--stone);text-decoration:none;float:right;margin:-6px 0 12px;}
+.forgot-link:hover{color:var(--amber);}
+/* ALERTS */
+.alert{border-radius:8px;padding:12px 14px;font-size:13px;margin-bottom:14px;display:none;align-items:center;gap:10px;}
+.alert.show{display:flex;}
+.alert-error{background:var(--red-light);border:1.5px solid rgba(192,57,43,0.25);color:var(--red);}
+.alert-success{background:var(--green-light);border:1.5px solid rgba(58,107,58,0.3);color:var(--green);}
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:12px;margin:18px 0;color:var(--stone-light);font-size:12px;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--stone-light);}
+/* DEMO SECTION */
+.demo-section{margin-bottom:22px;}
+.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.demo-card{border:1.5px solid var(--stone-light);border-radius:12px;padding:14px 12px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left;transition:all 0.2s;background:var(--white);width:100%;}
+.demo-card:hover{border-color:var(--amber);transform:translateY(-1px);}
+/* SUCCESS */
+.success-screen{display:none;text-align:center;padding:20px 0;}
+.success-screen.show{display:block;}
+.reset-screen{display:none;text-align:center;padding:20px 0;}
+.reset-screen.show{display:block;}
+.reset-screen .field{text-align:left;margin-bottom:16px;}
+.success-icon{width:72px;height:72px;border-radius:50%;background:var(--green-light);border:3px solid var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
+.success-screen h2{font-family:'Archivo Black',sans-serif;font-size:32px;color:var(--dark);letter-spacing:1px;margin-bottom:8px;}
+.success-screen p{font-size:14px;color:var(--stone);line-height:1.7;margin-bottom:8px;}
+.success-screen .note{font-size:12px;color:var(--stone-light);margin-bottom:24px;}
+/* VERIFY SCREEN */
+.verify-screen{display:none;text-align:center;padding:20px 0;}
+.verify-screen.show{display:block;}
+.verify-icon{width:72px;height:72px;border-radius:50%;background:#FFF3E0;border:3px solid var(--amber);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
+.verify-screen h2{font-family:'Archivo Black',sans-serif;font-size:32px;color:var(--dark);letter-spacing:1px;margin-bottom:8px;}
+.verify-screen p{font-size:14px;color:var(--stone);line-height:1.7;margin-bottom:8px;}
+.verify-resend{background:none;border:1.5px solid var(--stone-light);color:var(--stone);padding:9px 20px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;margin-top:12px;}
+.verify-resend:hover{border-color:var(--amber);color:var(--amber);}
+/* SPINNER */
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{width:18px;height:18px;border:2px solid rgba(253,250,245,0.3);border-top-color:var(--cream);border-radius:50%;animation:spin 0.7s linear infinite;display:none;}
+.spinner.show{display:block;}
+.switch-mode{text-align:center;font-size:13px;color:var(--stone);margin-top:18px;}
+.switch-link{color:var(--amber);font-weight:600;cursor:pointer;text-decoration:none;}
+.switch-link:hover{text-decoration:underline;}
+.terms-note{font-size:11px;color:var(--stone);text-align:center;margin-top:12px;line-height:1.6;}
+.terms-note a{color:var(--amber);text-decoration:none;}
+@media(max-width:768px){.auth-wrap{grid-template-columns:1fr;}.auth-left{display:none;}.auth-right{padding:30px 20px;align-items:flex-start;padding-top:80px;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Young<span>Merit</span></a>
+  <div class="nav-lang-mount"></div>
+  <a href="index.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Back to site
+  </a>
+</nav>
+
+<div class="auth-wrap">
+  <!-- LEFT BRAND PANEL -->
+  <div class="auth-left">
+    <span class="auth-eyebrow" data-i18n="auth.left.eyebrow">Welcome to YoungMerit</span>
+    <h1 class="auth-heading" data-i18n="auth.left.title" data-i18n-html>YOUR WORK.<br/>YOUR <span class="accent">PROOF.</span></h1>
+    <p class="auth-desc" data-i18n="auth.left.desc">Join young workers and businesses building trust and getting things done across six countries.</p>
+    <div class="trust-row">
+      <div class="trust-item">
+        <div class="trust-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <span data-i18n="auth.left.trust1">Identity verified on every account</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <span data-i18n="auth.left.trust2">Payments held in secure escrow</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <span data-i18n="auth.left.trust3">Build your Skill Passport with every task</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <span data-i18n="auth.left.trust4">Active across six countries worldwide</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT FORM PANEL -->
+  <div class="auth-right">
+    <div class="auth-card">
+
+      <!-- MODE TOGGLE -->
+      <div class="mode-toggle" id="modeToggle">
+        <button class="mode-btn active" onclick="setMode('signup')" data-i18n="auth.mode.signup">Sign Up</button>
+        <button class="mode-btn" onclick="setMode('login')" data-i18n="auth.mode.login">Log In</button>
+      </div>
+
+      <!-- DEMO ACCOUNTS -->
+      <div class="demo-section" id="demoBox">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <div style="flex:1;height:1px;background:var(--stone-light);"></div>
+          <span style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--stone);white-space:nowrap;" data-i18n="auth.demo.tryLabel">Try a demo account</span>
+          <div style="flex:1;height:1px;background:var(--stone-light);"></div>
+        </div>
+        <div class="demo-grid">
+          <button class="demo-card" onclick="loginDemo('worker')">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--amber),#7A5000);display:flex;align-items:center;justify-content:center;font-family:'Archivo Black',sans-serif;font-size:15px;color:var(--dark);flex-shrink:0;">T</div>
+              <div><div style="font-size:13px;font-weight:600;color:var(--dark);">Tebogo Mokoena</div><div style="font-size:10px;color:var(--stone);font-weight:600;letter-spacing:1px;text-transform:uppercase;" data-i18n="auth.demo.worker">Worker</div></div>
+            </div>
+            <div style="font-size:11px;color:var(--stone);" data-i18n="auth.demo.worker.stats">12 tasks &middot; 4.8 rating &middot; R4,280 earned</div>
+            <div style="margin-top:8px;background:var(--amber);color:var(--dark);font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;display:inline-block;" data-i18n="auth.demo.worker.cta">Log in as Worker</div>
+          </button>
+          <button class="demo-card" onclick="loginDemo('business')">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+              <div style="width:32px;height:32px;border-radius:10px;background:var(--dark);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+              <div><div style="font-size:13px;font-weight:600;color:var(--dark);">Creative Co.</div><div style="font-size:10px;color:var(--stone);font-weight:600;letter-spacing:1px;text-transform:uppercase;" data-i18n="auth.demo.business">Business</div></div>
+            </div>
+            <div style="font-size:11px;color:var(--stone);" data-i18n="auth.demo.business.stats">24 tasks &middot; 4.9 rating &middot; 19 hired</div>
+            <div style="margin-top:8px;background:var(--dark);color:var(--cream);font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;display:inline-block;" data-i18n="auth.demo.business.cta">Log in as Business</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- VERIFY EMAIL SCREEN -->
+      <div class="verify-screen" id="verifyScreen">
+        <div class="verify-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <h2 data-i18n="auth.verify.title">CHECK YOUR EMAIL.</h2>
+        <p data-i18n="auth.verify.desc" data-i18n-html>We sent a verification link to<br/><strong id="verifyEmail" style="color:var(--dark);"></strong></p>
+        <p class="note" data-i18n="auth.verify.note">Click the link in the email to activate your account. Check your spam folder if you don't see it.</p>
+        <button class="verify-resend" onclick="resendEmail()" data-i18n="auth.verify.resend">Resend verification email</button>
+        <div class="alert alert-success" id="resendAlert" style="margin-top:12px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span data-i18n="auth.verify.resent">Email resent successfully.</span>
+        </div>
+      </div>
+
+      <!-- SUCCESS SCREEN (login) -->
+      <div class="success-screen" id="successScreen">
+        <div class="success-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2 id="successTitle" data-i18n="auth.success.titleLogin">WELCOME BACK.</h2>
+        <p id="successMsg" data-i18n="auth.success.msgLogin">You are now logged in. Taking you to your profile&hellip;</p>
+      </div>
+
+      <!-- SET NEW PASSWORD SCREEN (shown after clicking the reset link in email) -->
+      <div class="reset-screen" id="resetScreen">
+        <div class="verify-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h2 data-i18n="auth.reset.title">SET A NEW PASSWORD.</h2>
+        <p data-i18n="auth.reset.desc">Choose a new password for your account.</p>
+        <div class="alert alert-error" id="resetAlert" style="margin-bottom:12px;">
+          <span id="resetAlertMsg" data-i18n="auth.reset.err.generic">Something went wrong. Please try again.</span>
+        </div>
+        <div class="field">
+          <label data-i18n="auth.reset.newPassword">New password</label>
+          <div class="pw-wrap">
+            <input type="password" id="resetPw1" placeholder="At least 8 characters" autocomplete="new-password" oninput="checkResetStrength(this.value)"/>
+          </div>
+          <div class="pw-hint" id="resetPwHint" data-i18n="auth.pw.tooShort">Too short</div>
+          <div class="field-err" id="eResetPw1" data-i18n="auth.signup.password.err">Password must be at least 8 characters</div>
+        </div>
+        <div class="field">
+          <label data-i18n="auth.reset.confirmPassword">Confirm new password</label>
+          <div class="pw-wrap">
+            <input type="password" id="resetPw2" placeholder="Re-enter your password" autocomplete="new-password"/>
+          </div>
+          <div class="field-err" id="eResetPw2" data-i18n="auth.reset.err.mismatch">Passwords do not match</div>
+        </div>
+        <button class="submit-btn" id="resetBtn" onclick="handleResetSubmit()">
+          <span id="resetBtnTxt" data-i18n="auth.reset.cta">Set new password</span>
+        </button>
+      </div>
+
+      <!-- SIGN UP FORM -->
+      <div class="form-section show" id="signupForm">
+        <div class="form-title" data-i18n="auth.signup.title">CREATE YOUR ACCOUNT</div>
+        <p class="form-sub" data-i18n="auth.signup.desc">Free to join. No credit card required.</p>
+
+        <!-- ALERT (errors from Supabase) -->
+        <div class="alert alert-error" id="signupAlert">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span id="signupAlertMsg" data-i18n="auth.alert.generic">Something went wrong. Please try again.</span>
+        </div>
+
+        <!-- ACCOUNT TYPE -->
+        <div class="type-select" id="typeSelect">
+          <span class="type-label" data-i18n="auth.signup.typeLabel">I am joining as a</span>
+          <div class="type-grid">
+            <div class="type-card" id="typeWorker" onclick="selectType('worker')">
+              <div class="type-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <h4 data-i18n="auth.demo.worker">Worker</h4><p data-i18n="auth.signup.typeWorkerDesc">Find tasks, get paid, build your reputation</p>
+              <div class="type-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+            <div class="type-card" id="typeBusiness" onclick="selectType('business')">
+              <div class="type-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+              <h4 data-i18n="auth.demo.business">Business</h4><p data-i18n="auth.signup.typeBusinessDesc">Post tasks and hire trusted young talent</p>
+              <div class="type-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            </div>
+          </div>
+          <div class="field-err" id="typeErr" style="display:none;margin-top:6px;" data-i18n="auth.signup.typeErr">Please select an account type to continue.</div>
+        </div>
+
+        <div class="field-row">
+          <div class="field"><label data-i18n="auth.signup.firstName">First name</label><input type="text" id="suFirst" placeholder="Amara" autocomplete="given-name"/><div class="field-err" id="eFirst" data-i18n="auth.err.required">Required</div></div>
+          <div class="field"><label data-i18n="auth.signup.lastName">Last name</label><input type="text" id="suLast" placeholder="Okafor" autocomplete="family-name"/><div class="field-err" id="eLast" data-i18n="auth.err.required">Required</div></div>
+        </div>
+
+        <div class="field" id="bizNameWrap" style="display:none;">
+          <label data-i18n="auth.signup.bizName">Business / organisation name</label>
+          <input type="text" id="suBizName" placeholder="Creative Co." autocomplete="organization"/>
+          <div class="field-err" id="eBizName" data-i18n="auth.signup.bizName.err">Required for business accounts</div>
+        </div>
+
+        <div class="field"><label data-i18n="auth.signup.email">Email address</label><input type="email" id="suEmail" placeholder="you@email.com" autocomplete="email"/><div class="field-err" id="eEmail" data-i18n="auth.err.email">Enter a valid email address</div></div>
+
+        <div class="field">
+          <label data-i18n="auth.signup.password">Password</label>
+          <div class="pw-wrap">
+            <input type="password" id="suPw" placeholder="At least 8 characters" autocomplete="new-password" oninput="checkStrength(this.value)"/>
+            <button class="pw-eye" type="button" onclick="togglePw('suPw',this)" tabindex="-1">
+              <svg id="eyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <div class="pw-strength" id="pwStrength">
+            <div class="pw-bar"><div class="pw-bar-fill" id="pwBarFill" style="width:0%;background:var(--red);"></div></div>
+            <div class="pw-hint" id="pwHint" data-i18n="auth.pw.tooShort">Too short</div>
+          </div>
+          <div class="field-err" id="ePw" data-i18n="auth.signup.password.err">Password must be at least 8 characters</div>
+        </div>
+
+        <button class="submit-btn" id="signupBtn" onclick="handleSignup()">
+          <span id="signupBtnTxt" data-i18n="auth.signup.cta">Create account</span>
+          <div class="spinner" id="signupSpin"></div>
+        </button>
+
+        <p class="terms-note" data-i18n="auth.signup.terms" data-i18n-html>By signing up you agree to our <a href="terms.html">Terms of Service</a> and <a href="privacy-policy.html">Privacy Policy</a>.</p>
+        <div class="switch-mode"><span data-i18n="auth.signup.switchPrompt">Already have an account?</span> <a class="switch-link" onclick="setMode('login')" data-i18n="auth.signup.switchLink">Log in</a></div>
+      </div>
+
+      <!-- LOG IN FORM -->
+      <div class="form-section" id="loginForm">
+        <div class="form-title" data-i18n="auth.login.title">WELCOME BACK.</div>
+        <p class="form-sub" data-i18n="auth.login.desc">Log in to access your profile and tasks.</p>
+
+        <div class="alert alert-error" id="loginAlert">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span id="loginAlertMsg" data-i18n="auth.login.alertMsg">Email or password is incorrect.</span>
+        </div>
+
+        <div class="field"><label data-i18n="auth.signup.email">Email address</label><input type="email" id="liEmail" placeholder="you@email.com" autocomplete="email"/><div class="field-err" id="eliEmail" data-i18n="auth.login.err.email">Enter your email address</div></div>
+
+        <div class="field">
+          <label data-i18n="auth.signup.password">Password</label>
+          <div class="pw-wrap">
+            <input type="password" id="liPw" placeholder="Your password" autocomplete="current-password" onkeydown="if(event.key==='Enter')handleLogin()"/>
+            <button class="pw-eye" type="button" onclick="togglePw('liPw',this)" tabindex="-1">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <div class="field-err" id="eliPw" data-i18n="auth.login.err.password">Enter your password</div>
+        </div>
+
+        <div style="text-align:right;margin:-4px 0 12px;">
+          <a href="#" class="forgot-link" onclick="handleForgot(event)" data-i18n="auth.login.forgot">Forgot password?</a>
+        </div>
+
+        <div class="alert alert-success" id="forgotAlert" style="margin-bottom:12px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span data-i18n="auth.login.forgotSent">Password reset email sent &mdash; check your inbox.</span>
+        </div>
+
+        <button class="submit-btn" id="loginBtn" onclick="handleLogin()">
+          <span id="loginBtnTxt" data-i18n="auth.login.cta">Log in</span>
+          <div class="spinner" id="loginSpin"></div>
+        </button>
+
+        <div class="switch-mode" style="margin-top:18px;"><span data-i18n="auth.login.switchPrompt">Don't have an account?</span> <a class="switch-link" onclick="setMode('signup')" data-i18n="auth.login.switchLink">Sign up free</a></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Supabase CDN — loads the official JS client, no npm needed -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// ─────────────────────────────────────────
+//  DEMO TOGGLE — set to false before going live
+// ─────────────────────────────────────────
+var SHOW_DEMO = false; // <-- demo accounts removed from the live auth screen
+
+// ─────────────────────────────────────────
+//  SUPABASE CLIENT
+// ─────────────────────────────────────────
+var SUPA_URL  = 'https://asireievwpaijfdzdcxm.supabase.co';
+var SUPA_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFzaXJlaWV2d3BhaWpmZHpkY3htIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ5OTMyMjcsImV4cCI6MjEwMDU2OTIyN30.nd9dhJ388XZhwTgyFcgcZ4b4msypf4pDzz6IX0_27Hk';
+var supabase  = window.supabase.createClient(SUPA_URL, SUPA_KEY);
+
+// ─────────────────────────────────────────
+//  DEMO ACCOUNTS (still localStorage — demo only)
+// ─────────────────────────────────────────
+var DEMO = {
+  worker:{loggedIn:true,isDemo:true,type:'worker',subscriptionTier:'pro',name:'Tebogo Mokoena',firstName:'Tebogo',lastName:'Mokoena',email:'tebogo@demo.growiq',title:'Social Media Manager',location:'Johannesburg, SA',languages:'English, Zulu',education:'Wits — Marketing',age:'21',about:"I'm a content creator and social media strategist based in Johannesburg with a passion for helping brands tell their stories online.",skills:['Social Media','Canva','Content Writing','Instagram Reels','TikTok','Copywriting'],tasksCompleted:12,rating:'4.8',earned:'R4,280',completionRate:'98%',passportLevel:'Verified',passportProgress:48,passportNext:'Rising at 25 tasks',walletBalance:'R280',memberSince:'Jan 2025',verification:{identity:'done',email:'done',phone:'pending',bank:'none'},tasks:[{name:'Design 5 Instagram Post Templates',company:'Creative Co.',date:'June 2025',pay:'R250',stars:5},{name:'Write 10 LinkedIn Captions',company:'CapXcel',date:'May 2025',pay:'R400',stars:4},{name:'Research Top 20 Competitors',company:'Nexlify',date:'April 2025',pay:'R550',stars:5}],applications:[{name:'TikTok Content for Beauty Brand',company:'BeautyBox',date:'Applied 2d ago',status:'Under review',statusClass:'badge-amber'},{name:'Market Research EdTech',company:'Learnr',date:'Applied 5d ago',status:'Shortlisted',statusClass:'badge-green'}],analytics:{profileViews:134,profileViewsWeek:18,savedByBusinesses:9,applicationsSent:11,applicationsAccepted:5}},
+  business:{loggedIn:true,isDemo:true,type:'business',subscriptionTier:'growth',name:'Creative Co.',firstName:'Creative Co.',email:'hello@creativeco.demo',title:'Design & Creative Agency',location:'Cape Town, SA',companySize:'5–10 people',website:'creativeco.co.za',about:'Creative Co. is a Cape Town-based design and creative agency. We use YoungMerit to connect with talented young creatives for project-based work.',tags:['Design','Social Media','Branding','Content Creation'],tasksPosted:24,workersHired:19,totalPaid:'R12,400',rating:'4.9',walletBalance:'R3,200',walletEscrow:'R850',memberSince:'Feb 2025',verification:{identity:'done',company:'done',email:'done',payment:'pending'},postings:[{name:'Design 5 Instagram Post Templates',applicants:14,due:'3 days',pay:'R250',status:'Live',statusClass:'badge-green'},{name:'TikTok Content Q3 Campaign',applicants:6,due:'7 days',pay:'R600',status:'In review',statusClass:'badge-amber'}],applicants:[{initials:'AO',name:'Amara Okafor',title:'Content Creator · Lagos',score:'4.9',tasks:47,trust:94,status:'shortlist'},{initials:'TM',name:'Tebogo Mokoena',title:'Social Media · JHB',score:'4.8',tasks:12,trust:88,status:'shortlist'},{initials:'KM',name:'Kezia M.',title:'Designer · Nairobi',score:'4.7',tasks:31,trust:91,status:'locked'}],pastTasks:[{name:'Research Top 20 Competitors',worker:'Tebogo Mokoena',date:'April 2025',pay:'R550',stars:5},{name:'Design Instagram Templates',worker:'Amara Okafor',date:'March 2025',pay:'R250',stars:4}]}
+};
+
+function t_(key, fallback){ return (window.HONEI18N && window.HONEI18N.t) ? window.HONEI18N.t(key) : fallback; }
+
+function loginDemo(type){
+  localStorage.setItem('growiq_user', JSON.stringify(DEMO[type]));
+  var db = document.getElementById('demoBox');
+  var msg = t_('auth.demo.loggingIn', 'Logging in as {name}\u2026').replace('{name}', DEMO[type].name);
+  db.innerHTML = '<div style="background:var(--green-light);border:1.5px solid var(--green);border-radius:10px;padding:16px;text-align:center;display:flex;align-items:center;justify-content:center;gap:10px;font-size:14px;color:var(--green);font-weight:600;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>' + msg + '</div>';
+  setTimeout(function(){window.location.href='index.html';}, 900);
+}
+
+// ─────────────────────────────────────────
+//  UI HELPERS
+// ─────────────────────────────────────────
+var selectedType = null;
+
+function setMode(mode){
+  document.querySelectorAll('.mode-btn').forEach(function(b,i){b.classList.toggle('active', i===(mode==='signup'?0:1));});
+  document.getElementById('signupForm').classList.toggle('show', mode==='signup');
+  document.getElementById('loginForm').classList.toggle('show', mode==='login');
+  document.getElementById('verifyScreen').classList.remove('show');
+  document.getElementById('successScreen').classList.remove('show');
+  document.getElementById('resetScreen').classList.remove('show');
+  hideAlert('signupAlert'); hideAlert('loginAlert'); hideAlert('forgotAlert'); hideAlert('resetAlert');
+}
+
+function selectType(type){
+  selectedType = type;
+  document.getElementById('typeWorker').classList.toggle('selected', type==='worker');
+  document.getElementById('typeBusiness').classList.toggle('selected', type==='business');
+  document.getElementById('bizNameWrap').style.display = type==='business'?'block':'none';
+  document.getElementById('typeErr').style.display = 'none';
+}
+
+function togglePw(inputId, btn){
+  var inp = document.getElementById(inputId);
+  var showing = inp.type === 'text';
+  inp.type = showing ? 'password' : 'text';
+  btn.querySelector('svg').innerHTML = showing
+    ? '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>'
+    : '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
+}
+
+function checkStrength(pw){
+  var el = document.getElementById('pwStrength');
+  var fill = document.getElementById('pwBarFill');
+  var hint = document.getElementById('pwHint');
+  if(!pw){el.classList.remove('show');return;}
+  el.classList.add('show');
+  var score = 0;
+  if(pw.length >= 8)  score++;
+  if(pw.length >= 12) score++;
+  if(/[A-Z]/.test(pw)) score++;
+  if(/[0-9]/.test(pw)) score++;
+  if(/[^A-Za-z0-9]/.test(pw)) score++;
+  var levels = [{w:'20%',c:'var(--red)',t:t_('auth.pw.tooWeak','Too weak')},{w:'40%',c:'#E67E22',t:t_('auth.pw.weak','Weak')},{w:'60%',c:'#F1C40F',t:t_('auth.pw.fair','Fair')},{w:'80%',c:'var(--amber)',t:t_('auth.pw.good','Good')},{w:'100%',c:'var(--green)',t:t_('auth.pw.strong','Strong')}];
+  var l = levels[Math.min(score, 4)];
+  fill.style.width = l.w; fill.style.background = l.c; hint.textContent = l.t; hint.style.color = l.c;
+}
+
+function showAlert(id, msg){
+  var el = document.getElementById(id);
+  if(msg && document.getElementById(id+'Msg')) document.getElementById(id+'Msg').textContent = msg;
+  el.classList.add('show');
+}
+function hideAlert(id){ document.getElementById(id).classList.remove('show'); }
+
+function fieldErr(id, show){
+  var el = document.getElementById(id);
+  if(el){ el.classList.toggle('show', show); el.style.display = show ? 'block' : 'none'; }
+}
+
+function setLoading(btnId, spinId, txtId, loading){
+  var btn = document.getElementById(btnId);
+  btn.disabled = loading;
+  document.getElementById(spinId).classList.toggle('show', loading);
+  document.getElementById(txtId).style.opacity = loading ? 0 : 1;
+}
+
+// ─────────────────────────────────────────
+//  SIGN UP — Supabase
+// ─────────────────────────────────────────
+async function handleSignup(){
+  hideAlert('signupAlert');
+  var first   = document.getElementById('suFirst').value.trim();
+  var last    = document.getElementById('suLast').value.trim();
+  var email   = document.getElementById('suEmail').value.trim();
+  var pw      = document.getElementById('suPw').value;
+  var bizName = document.getElementById('suBizName').value.trim();
+  var valid   = true;
+
+  if(!selectedType){ document.getElementById('typeErr').style.display='block'; valid=false; }
+  fieldErr('eFirst',  !first);    if(!first)    valid=false;
+  fieldErr('eLast',   !last);     if(!last)     valid=false;
+  fieldErr('eEmail',  !email||!email.includes('@')); if(!email||!email.includes('@')) valid=false;
+  fieldErr('ePw',     pw.length<8); if(pw.length<8) valid=false;
+  if(selectedType==='business'){ fieldErr('eBizName',!bizName); if(!bizName) valid=false; }
+  if(!valid) return;
+
+  setLoading('signupBtn','signupSpin','signupBtnTxt', true);
+
+  var displayName = selectedType==='business' ? bizName : first+' '+last;
+
+  try {
+    if(window.AUTH_SESSION_CHECK_DONE) await window.AUTH_SESSION_CHECK_DONE;
+
+    var result = await supabase.auth.signUp({
+      email: email,
+      password: pw,
+      options: {
+        data: {
+          first_name:   first,
+          last_name:    last,
+          account_type: selectedType,
+          display_name: displayName
+        }
+      }
+    });
+
+    setLoading('signupBtn','signupSpin','signupBtnTxt', false);
+
+    if(result.error){
+      // User-friendly error messages
+      var msg = result.error.message || t_('auth.err.wentWrong','Something went wrong.');
+      if(msg.includes('already registered')) msg = t_('auth.err.alreadyRegistered','This email is already registered. Try logging in instead.');
+      if(msg.includes('password'))           msg = t_('auth.err.passwordShort','Password must be at least 8 characters.');
+      if(msg.includes('invalid'))            msg = t_('auth.err.invalidEmail','Please enter a valid email address.');
+      showAlert('signupAlert', msg);
+      return;
+    }
+
+    // Success — show verify email screen
+    document.getElementById('verifyEmail').textContent = email;
+    document.getElementById('signupForm').classList.remove('show');
+    document.getElementById('modeToggle').style.display = 'none';
+    document.getElementById('demoBox').style.display = 'none';
+    document.getElementById('verifyScreen').classList.add('show');
+
+  } catch(err) {
+    setLoading('signupBtn','signupSpin','signupBtnTxt', false);
+    showAlert('signupAlert', t_('auth.err.connection','Connection error. Check your internet and try again.'));
+  }
+}
+
+// ─────────────────────────────────────────
+//  LOG IN — Supabase
+// ─────────────────────────────────────────
+async function handleLogin(){
+  hideAlert('loginAlert'); hideAlert('forgotAlert');
+  var email = document.getElementById('liEmail').value.trim();
+  var pw    = document.getElementById('liPw').value;
+  var valid = true;
+  fieldErr('eliEmail', !email); if(!email) valid=false;
+  fieldErr('eliPw',    !pw);    if(!pw)    valid=false;
+  if(!valid) return;
+
+  setLoading('loginBtn','loginSpin','loginBtnTxt', true);
+
+  try {
+    // Wait for the page-load session check/cleanup to fully finish first
+    // -- if it's still signing out a stale session in the background,
+    // starting a fresh sign-in at the same time is a real race: whichever
+    // one resolves last silently overwrites the other.
+    if(window.AUTH_SESSION_CHECK_DONE) await window.AUTH_SESSION_CHECK_DONE;
+
+    var result = await supabase.auth.signInWithPassword({ email: email, password: pw });
+
+    setLoading('loginBtn','loginSpin','loginBtnTxt', false);
+
+    if(result.error){
+      var msg = result.error.message || t_('auth.err.loginFailed','Login failed.');
+      if(msg.includes('Invalid login') || msg.includes('credentials')) msg = t_('auth.login.alertMsg','Email or password is incorrect.');
+      if(msg.includes('Email not confirmed')) msg = t_('auth.err.notConfirmed','Please verify your email first. Check your inbox for the confirmation link.');
+      if(msg.includes('Too many'))            msg = t_('auth.err.tooMany','Too many login attempts. Please wait a few minutes and try again.');
+      showAlert('loginAlert', msg);
+      return;
+    }
+
+    // Fetch profile from Supabase
+    var session = result.data.session;
+    var user    = result.data.user;
+    var meta    = user.user_metadata || {};
+
+    // Try to get the profile row
+    var profileResult = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', user.id)
+      .single();
+
+    var profile = profileResult.data || {};
+
+    // Build the local user object for the profile page
+    var localUser = {
+      loggedIn:     true,
+      supabaseId:   user.id,
+      email:        user.email,
+      type:         profile.account_type || meta.account_type || 'worker',
+      name:         profile.first_name ? profile.first_name+' '+(profile.last_name||'') : (meta.display_name || email.split('@')[0]),
+      firstName:    profile.first_name  || meta.first_name  || '',
+      lastName:     profile.last_name   || meta.last_name   || '',
+      photoUrl:     profile.avatar_url  || null, // must be "photoUrl" -- that's the exact key the nav (I18n.js) and profile.html both read to show the saved avatar
+      country:      profile.country     || '',
+      primaryLanguage: profile.primary_language || '',
+      memberSince:  new Date(user.created_at).toLocaleDateString('en-GB',{month:'short',year:'numeric'}),
+    };
+    localUser.name = localUser.name.trim() || localUser.email.split('@')[0];
+
+    localStorage.setItem('growiq_user', JSON.stringify(localUser));
+
+    // Compute everything first, before touching any DOM visibility --
+    // if any of this throws, the login form is still showing and the
+    // catch block below can surface a real error instead of leaving a
+    // blank screen behind a form that was already hidden.
+    var welcomeTitle = t_('auth.success.welcomeName','WELCOME BACK, {name}.').replace('{name}', (localUser.firstName||localUser.name).toUpperCase());
+    var welcomeMsg = t_('auth.success.loggingIn','Logging you in\u2026');
+
+    document.getElementById('loginForm').classList.remove('show');
+    document.getElementById('modeToggle').style.display = 'none';
+    document.getElementById('demoBox').style.display = 'none';
+    var sc = document.getElementById('successScreen');
+    document.getElementById('successTitle').textContent = welcomeTitle;
+    document.getElementById('successMsg').textContent = welcomeMsg;
+    sc.classList.add('show');
+    setTimeout(function(){ window.location.href = 'index.html'; }, 1200);
+
+  } catch(err) {
+    console.error('YoungMerit: login failed unexpectedly', err);
+    setLoading('loginBtn','loginSpin','loginBtnTxt', false);
+    // Safety net: if the login form was already hidden in preparation for
+    // the success screen but something threw before that screen actually
+    // showed, this brings the form back rather than leaving a blank panel
+    // with an error message nobody can see.
+    var lf = document.getElementById('loginForm');
+    if(lf && !lf.classList.contains('show')) lf.classList.add('show');
+    var mt = document.getElementById('modeToggle'); if(mt) mt.style.display = '';
+    var db2 = document.getElementById('demoBox'); if(db2 && SHOW_DEMO) db2.style.display = '';
+    showAlert('loginAlert', t_('auth.err.connection','Connection error. Check your internet and try again.'));
+  }
+}
+
+// ─────────────────────────────────────────
+//  SET NEW PASSWORD (after clicking the reset link in email)
+// ─────────────────────────────────────────
+function showResetScreen(){
+  document.getElementById('signupForm').classList.remove('show');
+  document.getElementById('loginForm').classList.remove('show');
+  document.getElementById('verifyScreen').classList.remove('show');
+  document.getElementById('successScreen').classList.remove('show');
+  document.getElementById('resetScreen').classList.add('show');
+}
+
+function checkResetStrength(pw){
+  var hint = document.getElementById('resetPwHint');
+  if(!pw){ hint.textContent = ''; return; }
+  var score = 0;
+  if(pw.length >= 8)  score++;
+  if(pw.length >= 12) score++;
+  if(/[A-Z]/.test(pw)) score++;
+  if(/[0-9]/.test(pw)) score++;
+  if(/[^A-Za-z0-9]/.test(pw)) score++;
+  var levels = [
+    {c:'var(--red)',   t:t_('auth.pw.tooWeak','Too weak')},
+    {c:'#E67E22',       t:t_('auth.pw.weak','Weak')},
+    {c:'#F1C40F',       t:t_('auth.pw.fair','Fair')},
+    {c:'var(--amber)',  t:t_('auth.pw.good','Good')},
+    {c:'var(--green)',  t:t_('auth.pw.strong','Strong')}
+  ];
+  var l = levels[Math.min(score, 4)];
+  hint.textContent = l.t;
+  hint.style.color = l.c;
+}
+
+async function handleResetSubmit(){
+  var pw1 = document.getElementById('resetPw1').value;
+  var pw2 = document.getElementById('resetPw2').value;
+  fieldErr('eResetPw1', false); fieldErr('eResetPw2', false); hideAlert('resetAlert');
+
+  var valid = true;
+  if(pw1.length < 8){ fieldErr('eResetPw1', true); valid = false; }
+  if(pw1 !== pw2){ fieldErr('eResetPw2', true); valid = false; }
+  if(!valid) return;
+
+  var btn = document.getElementById('resetBtn');
+  btn.disabled = true; btn.classList.add('loading');
+
+  try {
+    var result = await supabase.auth.updateUser({ password: pw1 });
+    btn.disabled = false; btn.classList.remove('loading');
+    if(result.error){
+      showAlert('resetAlert', result.error.message || t_('auth.reset.err.generic','Something went wrong. Please try again.'));
+      return;
+    }
+    document.getElementById('resetScreen').classList.remove('show');
+    document.getElementById('successScreen').classList.add('show');
+    document.getElementById('successTitle').textContent = t_('auth.reset.successTitle','PASSWORD UPDATED.');
+    document.getElementById('successMsg').textContent = t_('auth.reset.successMsg','Taking you to your profile\u2026');
+    setTimeout(function(){ window.location.href = 'index.html'; }, 1600);
+  } catch(err) {
+    btn.disabled = false; btn.classList.remove('loading');
+    showAlert('resetAlert', t_('auth.err.connection','Connection error. Check your internet and try again.'));
+  }
+}
+
+// Supabase puts the recovery session in place and fires this event when the
+// page is loaded from a password-reset email link.
+supabase.auth.onAuthStateChange(function(event, session){
+  if(event === 'PASSWORD_RECOVERY'){
+    showResetScreen();
+  }
+});
+
+// ─────────────────────────────────────────
+//  FORGOT PASSWORD
+// ─────────────────────────────────────────
+async function handleForgot(e){
+  e.preventDefault();
+  var email = document.getElementById('liEmail').value.trim();
+  if(!email){ fieldErr('eliEmail', true); showAlert('loginAlert', t_('auth.err.enterEmailFirst','Enter your email address above first.')); return; }
+  hideAlert('loginAlert');
+  var result = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: window.location.origin + '/auth.html'
+  });
+  if(!result.error){
+    showAlert('forgotAlert');
+    document.getElementById('forgotAlert').classList.add('show');
+  } else {
+    showAlert('loginAlert', t_('auth.err.resetFailed','Could not send reset email. Check the address and try again.'));
+  }
+}
+
+// ─────────────────────────────────────────
+//  RESEND VERIFICATION EMAIL
+// ─────────────────────────────────────────
+async function resendEmail(){
+  var email = document.getElementById('verifyEmail').textContent;
+  if(!email) return;
+  var result = await supabase.auth.resend({ type:'signup', email: email });
+  if(!result.error) document.getElementById('resendAlert').classList.add('show');
+}
+
+// ─────────────────────────────────────────
+//  AUTO-REDIRECT if already logged in via Supabase
+// ─────────────────────────────────────────
+// Exposed as a promise so handleLogin/handleSignup can wait for this
+// background cleanup to fully finish before attempting a fresh
+// sign-in -- otherwise a sign-out triggered here could still be in
+// flight while a brand new login is being submitted, and whichever one
+// resolves last silently wins, leaving the session in whatever state
+// the loser expected instead of the one actually visible on screen.
+window.AUTH_SESSION_CHECK_DONE = (async function(){
+  // Hide demo section if SHOW_DEMO is false
+  if(!SHOW_DEMO){
+    var db = document.getElementById('demoBox');
+    if(db) db.style.display = 'none';
+  }
+  try {
+    var result = await supabase.auth.getSession();
+    var u = null;
+    try { u = JSON.parse(localStorage.getItem('growiq_user')); } catch(e2){}
+
+    if(result.data && result.data.session){
+      if(u && u.loggedIn){
+        // Both agree: genuinely logged in, go straight to profile
+        window.location.href = 'index.html';
+        return;
+      } else {
+        // A real session exists but our own flag says logged out -- this
+        // is exactly the leftover-session bug that used to cause a
+        // sign-up/login redirect loop. Clean it up right here so it can
+        // never happen again, regardless of how it got out of sync.
+        try { await supabase.auth.signOut(); } catch(e3){}
+      }
+    }
+    // Demo account fallback: let them through, nothing else to check.
+  } catch(e){}
+})();
+</script>
+<script src="I18n.js"></script>
+</body>
+</html>
